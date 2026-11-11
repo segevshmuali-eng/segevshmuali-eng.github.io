@@ -301,186 +301,122 @@
       color: var(--emerald);
     }
 
-    /* Interactive Workflow Simulation Card */
-    .sim-card {
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(9, 14, 28, 0.96));
-      border: 1px solid rgba(56, 189, 248, 0.24);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    /* Hero Visual Showcase */
+    .hero-visual-frame {
       position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #050811;
+      border: 1px solid rgba(56, 189, 248, 0.24);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.62), 0 0 42px rgba(6, 182, 212, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
-    .sim-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 14px;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
+    .hero-visual-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(6, 182, 212, 0.04) 0%, transparent 35%, rgba(5, 8, 17, 0.28) 100%);
     }
 
-    .sim-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--ink);
+    .hero-visual-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
     }
 
-    .sim-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.14);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-    }
-
-    .sim-nodes {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .sim-node {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 11px 14px;
-      border-radius: 12px;
-      background: rgba(30, 41, 59, 0.45);
-      border: 1px solid var(--border);
-      transition: all 0.28s ease;
-    }
-
-    .sim-node.active {
-      background: rgba(6, 182, 212, 0.12);
-      border-color: rgba(34, 211, 238, 0.55);
-      box-shadow: 0 0 18px rgba(6, 182, 212, 0.15);
-    }
-
-    .sim-node.done {
-      background: rgba(16, 185, 129, 0.08);
-      border-color: rgba(16, 185, 129, 0.35);
-    }
-
-    .sim-node-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .sim-ico {
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-    }
-
-    .sim-node-name {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .sim-node-sub {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .sim-state {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .sim-node.active .sim-state {
-      color: var(--cyan-bright);
-    }
-
-    .sim-node.done .sim-state {
-      color: #34d399;
-    }
-
-    .sim-log {
-      background: #03060d;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 12px;
-      color: #a5f3fc;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .sim-replay {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid var(--border);
-      color: var(--ink);
-      border-radius: 8px;
-      padding: 5px 10px;
-      font-size: 12px;
-      font-family: var(--font-head);
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .sim-replay:hover {
-      border-color: var(--cyan);
-      color: var(--cyan-bright);
-    }
-
-    /* Ecosystem Strip */
+    /* Infinite Tech Marquee Strip */
     .tech-strip {
-      padding: 20px 0 46px;
+      padding: 18px 0 48px;
     }
 
     .tech-strip-inner {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 18px 22px;
+      padding: 16px 22px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      gap: 20px;
+      overflow: hidden;
     }
 
     .tech-label {
       font-size: 13px;
       font-weight: 700;
       color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .tech-pills {
+    .marquee-viewport {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      direction: ltr;
+      mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    }
+
+    .marquee-track {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      width: max-content;
+      animation: marqueeScroll 26s linear infinite;
+    }
+
+    .marquee-viewport:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-right: 12px;
+      flex-shrink: 0;
+    }
+
+    @keyframes marqueeScroll {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
     }
 
     .tech-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 8px;
-      background: rgba(15, 23, 42, 0.85);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border);
       color: var(--ink-secondary);
+      white-space: nowrap;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .tech-pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan-bright), var(--blue));
+      box-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
+      flex-shrink: 0;
+    }
+
+    .tech-pill:hover {
+      border-color: var(--border-strong);
+      color: #ffffff;
     }
 
     /* Sections */
@@ -926,6 +862,14 @@
       .nav-links {
         display: none;
       }
+      .tech-strip-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .marquee-viewport {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -980,58 +924,9 @@
           </div>
         </div>
 
-        <!-- Interactive Live Simulation Widget -->
-        <div class="sim-card" aria-label="הדמיית זרימת אוטומציה חיה">
-          <div class="sim-header">
-            <div class="sim-title">⚡ הדמיית זרימה: חילוץ חשבוניות</div>
-            <span class="sim-badge" id="simStatus">READY</span>
-          </div>
-          <div class="sim-nodes">
-            <div class="sim-node" data-step="0">
-              <div class="sim-node-left">
-                <span class="sim-ico">📥</span>
-                <div>
-                  <div class="sim-node-name">קליטה מ-Gmail וטלגרם</div>
-                  <div class="sim-node-sub">שליפת מיילים שלא נקראו וקבלות מבוט DOSI</div>
-                </div>
-              </div>
-              <span class="sim-state mono">IDLE</span>
-            </div>
-            <div class="sim-node" data-step="1">
-              <div class="sim-node-left">
-                <span class="sim-ico">🧠</span>
-                <div>
-                  <div class="sim-node-name">סוכן AI + המרת מט"ח בזמן אמת</div>
-                  <div class="sim-node-sub">סינון הצעות מחיר, תרגום לעברית והמרת דולר לשקל</div>
-                </div>
-              </div>
-              <span class="sim-state mono">IDLE</span>
-            </div>
-            <div class="sim-node" data-step="2">
-              <div class="sim-node-left">
-                <span class="sim-ico">🗄️</span>
-                <div>
-                  <div class="sim-node-name">הזנה וניקוי כפילויות ב-Airtable MCP</div>
-                  <div class="sim-node-sub">רישום פעולות מתומחרות + שורת סה"כ נקייה</div>
-                </div>
-              </div>
-              <span class="sim-state mono">IDLE</span>
-            </div>
-            <div class="sim-node" data-step="3">
-              <div class="sim-node-left">
-                <span class="sim-ico">📊</span>
-                <div>
-                  <div class="sim-node-name">תיוק ב-Google Drive + דשבורד HTML</div>
-                  <div class="sim-node-sub">נושא / שנה / חודש ושליחת דו"ח סיכום למייל</div>
-                </div>
-              </div>
-              <span class="sim-state mono">IDLE</span>
-            </div>
-          </div>
-          <div class="sim-log">
-            <span id="simLogText" class="mono">מחכה להפעלת הדמיה...</span>
-            <button type="button" class="sim-replay" onclick="runSimulation()">הרץ שוב</button>
-          </div>
+        <!-- Hero Visual Artwork -->
+        <div class="hero-visual-frame">
+          <img src="assets/hero-ai.jpg" alt="SEAI — ארכיטקטורת אוטומציה ובינה מלאכותית" class="hero-visual-img">
         </div>
       </div>
     </section>
@@ -1040,15 +935,33 @@
       <div class="container">
         <div class="tech-strip-inner">
           <span class="tech-label">כלים וטכנולוגיות בחיבור ישיר:</span>
-          <div class="tech-pills">
-            <span class="tech-pill">n8n Cloud</span>
-            <span class="tech-pill">OpenAI Vision</span>
-            <span class="tech-pill">Airtable MCP</span>
-            <span class="tech-pill">Google Drive API</span>
-            <span class="tech-pill">Gmail API</span>
-            <span class="tech-pill">Telegram Bot API</span>
-            <span class="tech-pill">Base44</span>
-            <span class="tech-pill">Python MCP</span>
+          <div class="marquee-viewport" aria-label="כלים וטכנולוגיות בחיבור ישיר">
+            <div class="marquee-track">
+              <div class="marquee-group">
+                <span class="tech-pill">RAG</span>
+                <span class="tech-pill">MCP</span>
+                <span class="tech-pill">n8n</span>
+                <span class="tech-pill">Claude Code</span>
+                <span class="tech-pill">Antigravity</span>
+                <span class="tech-pill">API</span>
+                <span class="tech-pill">Apps</span>
+                <span class="tech-pill">Landing Pages</span>
+                <span class="tech-pill">Dashboards</span>
+                <span class="tech-pill">UI / UX</span>
+              </div>
+              <div class="marquee-group" aria-hidden="true">
+                <span class="tech-pill">RAG</span>
+                <span class="tech-pill">MCP</span>
+                <span class="tech-pill">n8n</span>
+                <span class="tech-pill">Claude Code</span>
+                <span class="tech-pill">Antigravity</span>
+                <span class="tech-pill">API</span>
+                <span class="tech-pill">Apps</span>
+                <span class="tech-pill">Landing Pages</span>
+                <span class="tech-pill">Dashboards</span>
+                <span class="tech-pill">UI / UX</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1116,7 +1029,7 @@
                   <div class="card-ico">🎓</div>
                   <span class="badge badge-amber">קישור דומיין יעודכן בקרוב</span>
                 </div>
-                <h3>פרויקט מכללת בינה מלאכותית</h3>
+                <h3>מכללת AI</h3>
                 <p>
                   אפליקציית רשת מתקדמת שנבנתה עבור תחום לימודי ה-AI, המשלבת חוויית משתמש נקייה בעברית, ניהול תהליכים חכמים והתאמה מלאה לצורכי הלקוח.
                 </p>
@@ -1321,58 +1234,6 @@
   </div>
 
   <script>
-    // Interactive pipeline simulation
-    const simLogs = [
-      'מאתר 3 חשבוניות חדשות מ-Gmail וטלגרם...',
-      'מפענח PDF ותמונה · ממיר $120 לפי שער דולר חי...',
-      'מזין שורות פעולות + שורת סה"כ · מוודא 0 כפילויות ב-Airtable MCP...',
-      'מתייק בדרייב (/2026/11 - נובמבר/) ושולח דשבורד HTML למייל!'
-    ];
-    let simTimer = null;
-
-    function runSimulation() {
-      if (simTimer) clearInterval(simTimer);
-      const nodes = document.querySelectorAll('.sim-node');
-      const statusBadge = document.getElementById('simStatus');
-      const logEl = document.getElementById('simLogText');
-
-      nodes.forEach((n) => {
-        n.classList.remove('active', 'done');
-        n.querySelector('.sim-state').textContent = 'WAITING';
-      });
-
-      let step = 0;
-      statusBadge.textContent = 'RUNNING';
-      statusBadge.style.color = '#22d3ee';
-      statusBadge.style.borderColor = 'rgba(34,211,238,0.45)';
-      statusBadge.style.background = 'rgba(6,182,212,0.14)';
-
-      function tick() {
-        if (step > 0) {
-          const prev = nodes[step - 1];
-          prev.classList.remove('active');
-          prev.classList.add('done');
-          prev.querySelector('.sim-state').textContent = 'DONE ✓';
-        }
-        if (step < nodes.length) {
-          const cur = nodes[step];
-          cur.classList.add('active');
-          cur.querySelector('.sim-state').textContent = 'ACTIVE ●';
-          logEl.textContent = simLogs[step];
-          step++;
-        } else {
-          clearInterval(simTimer);
-          statusBadge.textContent = 'COMPLETED ✓';
-          statusBadge.style.color = '#34d399';
-          statusBadge.style.borderColor = 'rgba(16,185,129,0.4)';
-          statusBadge.style.background = 'rgba(16,185,129,0.14)';
-        }
-      }
-
-      tick();
-      simTimer = setInterval(tick, 1450);
-    }
-
     // ROI Calculator
     function calcROI() {
       const docs = Number(document.getElementById('docsPerMonth').value);
@@ -1414,7 +1275,6 @@
       });
     }
 
-    runSimulation();
     calcROI();
   </script>
 </body>
