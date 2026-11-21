@@ -50,10 +50,11 @@ function applyBusinessConfig() {
 function updateCustomerBadge() {
   const badge = document.getElementById('customerBadge');
   if (currentBooking.customerType === 'regular') {
-    badge.innerHTML = `👤 לקוח קבוע: ${currentBooking.customerProfile.fullName || 'רשום'}`;
+    const firstName = currentBooking.customerProfile.fullName ? currentBooking.customerProfile.fullName.split(' ')[0] : 'רשום';
+    badge.innerHTML = `👤 לקוח קבוע (${firstName})`;
     badge.style.display = 'inline-block';
   } else if (currentBooking.customerType === 'one_time') {
-    badge.innerHTML = `👤 אורח / לקוח חד-פעמי`;
+    badge.innerHTML = `👤 אורח`;
     badge.style.display = 'inline-block';
   } else {
     badge.style.display = 'none';

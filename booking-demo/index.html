@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="סנכרון יומן בלייב, גבייה והפקת חשבוניות אוטומטית למספרות, קליניקות, מטפלים ויועצים.">
   <meta name="twitter:image" content="https://segevshmuali-eng.github.io/booking-demo/og-preview.jpg">
   
-  <link rel="stylesheet" href="styles.css?v=4.0">
+  <link rel="stylesheet" href="styles.css?v=5.0">
 </head>
 <body>
 
@@ -109,9 +109,15 @@
       <!-- שלב 1: לוח שנה לועזי -->
       <div class="calendar-wrapper">
         <div class="calendar-header">
-          <button class="calendar-nav-btn" onclick="prevMonth()">חודש קודם ▶</button>
+          <button type="button" class="calendar-nav-btn" onclick="prevMonth()" title="חודש קודם" aria-label="חודש קודם">
+            <span>▶</span>
+            <span class="nav-btn-text">חודש קודם</span>
+          </button>
           <h3 id="calendarMonthYear">נובמבר 2026</h3>
-          <button class="calendar-nav-btn" onclick="nextMonth()">◀ חודש הבא</button>
+          <button type="button" class="calendar-nav-btn" onclick="nextMonth()" title="חודש הבא" aria-label="חודש הבא">
+            <span class="nav-btn-text">חודש הבא</span>
+            <span>◀</span>
+          </button>
         </div>
         <div class="calendar-grid" id="calendarDaysGrid">
           <!-- ימי השבוע והתאריכים ירונדרו דרך JS -->
@@ -277,7 +283,7 @@
     </p>
   </footer>
 
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <script src="config.js?v=5.0"></script>
+  <script src="app.js?v=5.0"></script>
 </body>
 </html>

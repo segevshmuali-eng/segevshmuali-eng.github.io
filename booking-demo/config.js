@@ -5,8 +5,8 @@
 const BUSINESS_CONFIG = {
   // פרטי העסק הבסיסיים
   businessId: "clinic-holistic-01",
-  businessName: "מרחב שלווה - מרכז לרפואה משלימה ואיזון גוף-נפש",
-  businessType: "קליניקה לרפואה משלימה וטיפולי מגע",
+  businessName: "מרחב שלווה",
+  businessType: "מרכז לרפואה משלימה ואיזון גוף-נפש",
   tagline: "מקום לעצור, לנשום ולהחזיר את הגוף והנפש לאיזון טבעי",
   ownerName: "שגב שמואלי",
   ownerEmail: "segevshmueli0@gmail.com",
