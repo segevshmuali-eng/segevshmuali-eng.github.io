@@ -41,7 +41,7 @@ const BUSINESS_CONFIG = {
       category: "רפואה סינית",
       price: 290,
       durationMinutes: 45,
-      backgroundImage: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80",
+      backgroundImage: "acupuncture.jpg",
       description: "שורשיו של הדיקור הסיני נטועים בפילוסופיית הטאו ובאלפי שנות רפואה מזרחית הרואות באדם מכלול של גוף ונפש. הטיפול מיועד למתמודדים עם כאבי שרירים ושלד, בעיות שינה, מיגרנות וחוסר איזון הורמונלי או רגשי. הדיקור במחטים עדינות ומדויקות מסייע בשחרור חסימות פנימיות, מעורר את מנגנוני הריפוי הטבעיים של הגוף ומביא להקלה מהירה."
     },
     {
@@ -72,7 +72,7 @@ const BUSINESS_CONFIG = {
       image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80"
     },
     {
-      title: "פינת התה וההתרגעות",
+      title: "פינת התה והמרגוע",
       caption: "חליטות צמחים טבעיות לפני ואחרי כל מפגש",
       image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80"
     },
