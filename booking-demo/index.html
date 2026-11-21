@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מרחב שלווה - מערכת ניהול וקביעת תורים</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- כפתור הזמנת תור מרחף וקבוע (נגלה בכל שלב) -->
+  <button class="floating-book-btn" onclick="document.getElementById('bookingSection').scrollIntoView({behavior: 'smooth'})" title="לחץ לתיאום תור">
+    <span>✨</span>
+    <span>תיאום טיפול מרגיע</span>
+  </button>
+
+  <!-- סרגל ניווט עליון -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">🌿</div>
+      <div class="brand-text">
+        <h1 id="brandName">מרחב שלווה</h1>
+        <p id="brandTagline">רפואה משלימה ואיזון גוף-נפש</p>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#hero" class="nav-link">דף הבית</a>
+      <a href="#servicesSection" class="nav-link">סוגי טיפולים</a>
+      <a href="#gallerySection" class="nav-link">הקליניקה שלנו</a>
+      <a href="#bookingSection" class="nav-link">יומן ותורים</a>
+    </div>
+    <div id="customerBadge" class="customer-status-badge" onclick="document.getElementById('onboardingModal').style.display='flex'">
+      👤 הגדרת משתמש
+    </div>
+  </nav>
+
+  <!-- אזור פתיחה מרגיע (Hero) -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-subtitle" id="heroSubtitle">מרכז לרפואה משלימה והרפיה</p>
+      <h2 class="hero-title" id="heroTitle">מקום לעצור, לנשום ולהחזיר את הגוף לאיזון</h2>
+      <p class="hero-desc" id="heroDesc">
+        אנו מזמינים אותך להניח את טרדות היום בצד ולהתמסר לחוויית טיפול עמוקה, עוטפת ומשקמת באווירה פתוחה ושלווה.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="document.getElementById('bookingSection').scrollIntoView({behavior: 'smooth'})">
+          קביעת תור לטיפול
+        </button>
+        <button class="btn-secondary" onclick="document.getElementById('servicesSection').scrollIntoView({behavior: 'smooth'})">
+          הכרת הטיפולים
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- אזור שירותים וטיפולים -->
+  <section class="section" id="servicesSection">
+    <div class="section-header">
+      <h2 class="section-title">הטיפולים והשירותים שלנו</h2>
+      <p class="section-subtitle">
+        כל טיפול מותאם אישית למצבך הבריאותי והרגשי. לחץ על כותרת הטיפול לקביעת מועד מועדף ביומן.
+      </p>
+    </div>
+    <div class="services-grid" id="servicesContainer">
+      <!-- שירותים יוזנו דינמית מקובץ התצורה config.js -->
+    </div>
+  </section>
+
+  <!-- אזור גלריה של הקליניקה -->
+  <section class="section gallery-section" id="gallerySection">
+    <div class="section-header">
+      <h2 class="section-title">המרחב הטיפולי שלנו</h2>
+      <p class="section-subtitle">
+        הצצה לקליניקה הנעימה, לחדרי הטיפולים המוארים ולאווירה המזמינה המחכה לך.
+      </p>
+    </div>
+    <div class="gallery-grid" id="galleryContainer">
+      <!-- פריטי גלריה יוזנו דינמית -->
+    </div>
+  </section>
+
+  <!-- אזור יומן והזמנת תורים -->
+  <section class="section" id="bookingSection">
+    <div class="booking-section">
+      <div class="section-header">
+        <h2 class="section-title">קביעת תור ביומן המרחב</h2>
+        <p class="section-subtitle">
+          בחר תאריך רצוי ולאחר מכן שעה פנויה. היומן מסונכרן בזמן אמת מול לוח הזמנים של המטפל.
+        </p>
+      </div>
+
+      <!-- שלב 1: לוח שנה לועזי -->
+      <div class="calendar-wrapper">
+        <div class="calendar-header">
+          <button class="calendar-nav-btn" onclick="prevMonth()">חודש קודם ▶</button>
+          <h3 id="calendarMonthYear">נובמבר 2026</h3>
+          <button class="calendar-nav-btn" onclick="nextMonth()">◀ חודש הבא</button>
+        </div>
+        <div class="calendar-grid" id="calendarDaysGrid">
+          <!-- ימי השבוע והתאריכים ירונדרו דרך JS -->
+        </div>
+      </div>
+
+      <!-- שלב 2: שעות פנויות (שעות בדידות: 16:00) -->
+      <div class="time-slots-container" id="timeSlotsContainer">
+        <h4 style="font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 8px;">שעות פנויות בתאריך שנבחר:</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">בחירת שעה תעביר אותך אוטומטית לבחירת הטיפול הרצוי</p>
+        <div class="slots-grid" id="slotsGrid">
+          <!-- שעות בדידות יוצגו כאן -->
+        </div>
+      </div>
+
+      <!-- שלב 3: בחירת סוג הטיפול (נגלל אוטומטית ב-UX חלק) -->
+      <div class="service-selector-section" id="serviceSelectorSection">
+        <h4 style="font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 8px;">בחירת סוג הטיפול המבוקש:</h4>
+        <div class="service-pills" id="servicePillsContainer">
+          <!-- גלולות בחירה -->
+        </div>
+
+        <!-- סיכום ואישור הזמנה -->
+        <div class="booking-summary-card" id="bookingSummaryBox" style="display: none;">
+          <h4 style="font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 14px;">פרטי התור לתיאום</h4>
+          <div style="background: white; border-radius: 8px; padding: 14px; margin-bottom: 18px; border: 1px solid var(--border);">
+            <p><strong>טיפול:</strong> <span id="sumService">-</span></p>
+            <p><strong>סכום לחיוב:</strong> <span id="sumPrice" style="color: var(--accent); font-weight: bold;">-</span></p>
+            <p><strong>מועד:</strong> <span id="sumDateTime">-</span></p>
+          </div>
+
+          <!-- הודעה מיוחדת ללקוח קבוע עם כרטיס שמור -->
+          <div id="regularPaymentNotice" style="display: none; background: rgba(91,142,125,0.1); border-right: 4px solid var(--primary); padding: 12px; margin-bottom: 16px; border-radius: 4px;">
+            <p style="font-size: 0.9rem; color: var(--primary-dark);">
+              💳 <strong>לקוח קבוע:</strong> כרטיסך השמור המסתיים ב-<span id="cardEndingDigits">4242</span> ישמש לחיוב אוטומטי רק לאחר אישור קיום התור על ידך.
+            </p>
+          </div>
+
+          <form id="bookingForm">
+            <div class="form-group">
+              <label for="clientName">שם מלא:</label>
+              <input type="text" id="clientName" class="form-control" placeholder="ישראל ישראלי" required>
+            </div>
+            <div class="form-group">
+              <label for="clientEmail">כתובת אימייל (לקבלת אישור וחשבונית):</label>
+              <input type="email" id="clientEmail" class="form-control" placeholder="israel@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="clientPhone">מספר טלפון נייד (לתזכורות ואישור תור):</label>
+              <input type="tel" id="clientPhone" class="form-control" placeholder="050-1234567" required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem; padding: 14px;">
+              אישור ותיאום התור סופית
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- כפתור בדיקה / הדמיה של התראת תחילת תור (מופיע לאחר רישום) -->
+      <div id="simulationControls" style="display: none; margin-top: 30px; text-align: center; padding: 20px; background: #FFFBEB; border: 1px dashed var(--accent); border-radius: var(--radius-md);">
+        <p style="font-weight: 600; color: #92400E; margin-bottom: 10px;">🧪 כלי סימולציה למפתח / בעל העסק:</p>
+        <button type="button" class="btn-primary" style="background: var(--accent);" onclick="triggerAppointmentStartNotification()">
+          הדמיית תחילת התור (שליחת התראה לאישור חיוב לקוח קבוע)
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- התראת תחילת תור ללקוח קבוע (כרטיס חיוב באישור בלבד) -->
+  <div class="notification-card" id="appointmentStartNotif">
+    <div class="notif-header">
+      <span>🔔</span>
+      <span>תורך מתחיל כעת!</span>
+    </div>
+    <div class="notif-body">
+      שלום, תורך לטיפול <strong id="notifServiceName">-</strong> מתחיל עכשיו.
+      הסכום לתשלום הינו <strong id="notifPrice">-</strong>.
+      כדי למנוע חיוב שגוי, אנא אשר כי התור אכן מתקיים כעת כדי לחייב את כרטיסך השמור.
+    </div>
+    <div class="notif-actions">
+      <button class="btn-primary" style="flex: 1;" onclick="confirmAppointmentAndPay()">אישור קיום תור וחיוב</button>
+      <button class="btn-secondary" style="padding: 6px 12px;" onclick="document.getElementById('appointmentStartNotif').classList.remove('active')">סגור</button>
+    </div>
+  </div>
+
+  <!-- מודל כניסה ראשונית (Onboarding): לקוח קבוע או חד פעמי -->
+  <div class="modal-backdrop" id="onboardingModal" style="display: none;">
+    <div class="modal-content">
+      
+      <!-- שלב 1: בחירת הגדרת הלקוח כלפי העסק -->
+      <div id="onboardingStep1">
+        <h2 style="color: var(--primary-dark); font-size: 1.6rem; margin-bottom: 10px;">ברוכים הבאים למרחב שלווה</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          כדי להעניק לך את השירות הנוח ביותר, כיצד תרצה להגדיר את הקשר שלך עם הקליניקה?
+        </p>
+
+        <div class="onboarding-choices">
+          <!-- בחירה: לקוח חד פעמי -->
+          <div class="choice-card" onclick="selectOneTimeCustomer()">
+            <div class="choice-icon">🌱</div>
+            <div class="choice-title">אני לקוח חד-פעמי</div>
+            <div class="choice-desc">כניסה מהירה לעיון בשירותים ובקליניקה ללא שמירת אמצעי תשלום מראש</div>
+          </div>
+
+          <!-- בחירה: לקוח קבוע -->
+          <div class="choice-card" onclick="selectRegularCustomer()" style="border-color: var(--accent); background: #FFFDF9;">
+            <div class="choice-icon">⭐</div>
+            <div class="choice-title">אני לקוח קבוע</div>
+            <div class="choice-desc">חיסכון בזמן, רישום אמצעי תשלום מאובטח לחיוב בסיום תור ללא התעסקות, עדיפות בקביעת שעות</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- שלב 2: מילוי פרטים עבור לקוח קבוע -->
+      <div id="onboardingStep2" style="display: none; text-align: right;">
+        <h3 style="color: var(--primary-dark); font-size: 1.4rem; margin-bottom: 6px;">רישום לקוח קבוע וחיסכון בזמן</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
+          פרטי האשראי נשמרים כטוקן מוצפן (Tokenization) במערכת הסליקה. החיוב יתבצע רק באישור קיום התור על ידך.
+        </p>
+
+        <form id="regularForm">
+          <div class="form-group">
+            <label for="regFullName">שם מלא:</label>
+            <input type="text" id="regFullName" class="form-control" placeholder="שם ושם משפחה" required>
+          </div>
+          <div class="form-group">
+            <label for="regEmail">כתובת אימייל (לקבלת חשבוניות וקבלות דיגיטליות):</label>
+            <input type="email" id="regEmail" class="form-control" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="regPhone">מספר טלפון נייד (להודעות אישור ותזכורות):</label>
+            <input type="tel" id="regPhone" class="form-control" placeholder="050-1234567" required>
+          </div>
+
+          <div style="background: #F1F5F9; border-radius: 8px; padding: 14px; margin-bottom: 18px;">
+            <label style="font-size: 0.88rem; font-weight: bold; color: var(--primary-dark);">💳 פרטי כרטיס אשראי לחיוב עתידי מהיר:</label>
+            <p style="font-size: 0.78rem; color: #64748B; margin-bottom: 8px;">מוצפן ומאובטח לפי תקן PCI-DSS</p>
+            <input type="text" id="regCardNumber" class="form-control" placeholder="4580 •••• •••• 4242" style="margin-bottom: 8px;" required>
+            <div style="display: flex; gap: 10px;">
+              <input type="text" class="form-control" placeholder="MM/YY" style="width: 50%;" required>
+              <input type="password" class="form-control" placeholder="CVV" style="width: 50%;" maxlength="3" required>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <button type="submit" class="btn-primary" style="flex: 2;">השלמת רישום לקוח קבוע</button>
+            <button type="button" class="btn-secondary" style="flex: 1;" onclick="selectOneTimeCustomer()">המשך כאורח</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- פוטר -->
+  <footer>
+    <h3 id="footerBusinessName">מרחב שלווה</h3>
+    <p id="footerAddress" style="margin-top: 6px;">דרך השלווה 12</p>
+    <p id="footerPhone">טלפון: 050-1234567</p>
+    <p style="margin-top: 20px; font-size: 0.8rem; color: #94A3B8;">
+      מערכת ניהול תורים מודולרית • מופעלת באמצעות מנוע אוטומציות n8n
+    </p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
