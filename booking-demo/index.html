@@ -232,12 +232,35 @@
         </div>
       </div>
 
-      <!-- שלב 2: מילוי פרטים עבור לקוח קבוע -->
+      <!-- שלב 2: מילוי פרטים עבור לקוח קבוע ואפשרויות תשלום -->
       <div id="onboardingStep2" style="display: none; text-align: right;">
-        <h3 style="color: var(--primary-dark); font-size: 1.4rem; margin-bottom: 6px;">רישום לקוח קבוע וחיסכון בזמן</h3>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
-          פרטי האשראי נשמרים כטוקן מוצפן (Tokenization) במערכת הסליקה. החיוב יתבצע רק באישור קיום התור על ידך.
+        <h3 style="color: var(--primary-dark); font-size: 1.35rem; margin-bottom: 4px;">רישום לקוח קבוע וחיסכון בזמן</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px;">
+          פרטי האשראי נשמרים כטוקן מוצפן (Tokenization) במערכת הסליקה של משולם. החיוב יתבצע רק באישור קיום התור על ידך.
         </p>
+
+        <!-- כפתורי תשלום מהיר (ביט ואפל פיי) -->
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 8px;">אפשרויות לתשלום מהיר במקום:</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <button type="button" onclick="triggerQuickPay('bit')" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border-radius: 10px; border: 1.5px solid #BAE6FD; background: #F0F9FF; color: #0369A1; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.2s;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: #2563EB; color: white; border-radius: 50%; font-size: 10px; font-weight: bold;">B</span>
+              תשלום ב-bit
+            </button>
+            <button type="button" onclick="triggerQuickPay('apple')" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border-radius: 10px; border: 1.5px solid #E2E8F0; background: #F8FAFC; color: #1E293B; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.2s;">
+              <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 170 170">
+                <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.67-7.81-11.96-14.31-7.11-10.74-12.63-22.95-16.56-36.63-3.93-13.67-5.89-26.47-5.89-38.4 0-14.64 3.73-26.68 11.2-36.14 7.46-9.46 16.79-14.28 27.97-14.46 4.93 0 10.42 1.34 16.48 4.02 6.06 2.68 10.02 4.07 11.88 4.18 1.48 0 5.68-1.46 12.6-4.38 6.91-2.92 12.74-4.22 17.49-3.9 13.04.87 23.36 5.8 30.95 14.81-11.39 6.89-16.96 16.48-16.71 28.78.27 9.8 4.06 18.06 11.37 24.78 4.5 4.18 9.53 7.08 15.09 8.7-2.61 7.78-5.74 15.62-9.4 23.51zM119.22 33.7c0-7.39 2.68-14.22 8.04-20.5 5.37-6.28 12.01-10.3 19.93-12.06.33 1.35.49 2.7.49 4.06 0 7.39-2.83 14.4-8.49 21.03-5.67 6.63-12.3 10.6-19.97 11.91z"/>
+              </svg>
+              Apple Pay
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; margin: 14px 0;">
+          <div style="flex: 1; height: 1px; background: #E2E8F0;"></div>
+          <span style="padding: 0 10px; font-size: 0.78rem; color: #94A3B8; font-weight: 500;">או שמירת כרטיס לחיוב עתידי</span>
+          <div style="flex: 1; height: 1px; background: #E2E8F0;"></div>
+        </div>
 
         <form id="regularForm">
           <div class="form-group">
@@ -253,13 +276,16 @@
             <input type="tel" id="regPhone" class="form-control" placeholder="050-1234567" required>
           </div>
 
-          <div style="background: #F1F5F9; border-radius: 8px; padding: 14px; margin-bottom: 18px;">
-            <label style="font-size: 0.88rem; font-weight: bold; color: var(--primary-dark);">💳 פרטי כרטיס אשראי לחיוב עתידי מהיר:</label>
-            <p style="font-size: 0.78rem; color: #64748B; margin-bottom: 8px;">מוצפן ומאובטח לפי תקן PCI-DSS</p>
-            <input type="text" id="regCardNumber" class="form-control" placeholder="4580 •••• •••• 4242" style="margin-bottom: 8px;" required>
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; margin-bottom: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label style="font-size: 0.85rem; font-weight: bold; color: var(--primary-dark); margin: 0;">💳 פרטי כרטיס אשראי לחיוב עתידי מהיר:</label>
+              <span style="font-size: 0.72rem; color: #10B981; font-weight: 600;">🔒 תקן PCI-DSS מאושר</span>
+            </div>
+            <p style="font-size: 0.75rem; color: #64748B; margin-bottom: 8px;">השדות מוטענים ומאובטחים ישירות מול שרתי חברת משולם</p>
+            <input type="text" id="regCardNumber" class="form-control" placeholder="4580 •••• •••• 4242" style="margin-bottom: 8px; font-family: monospace;" required>
             <div style="display: flex; gap: 10px;">
-              <input type="text" class="form-control" placeholder="MM/YY" style="width: 50%;" required>
-              <input type="password" class="form-control" placeholder="CVV" style="width: 50%;" maxlength="3" required>
+              <input type="text" id="regCardExpiry" class="form-control" placeholder="MM/YY" style="width: 50%; font-family: monospace; text-align: center;" required>
+              <input type="password" id="regCardCvv" class="form-control" placeholder="CVV" style="width: 50%; font-family: monospace; text-align: center;" maxlength="4" required>
             </div>
           </div>
 

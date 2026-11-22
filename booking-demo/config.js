@@ -103,10 +103,22 @@ const BUSINESS_CONFIG = {
     "19:00"
   ],
 
+  // הגדרות סליקת משולם (Meshulam Gateway Config)
+  meshulam: {
+    sandbox: true,
+    pageCode: "הזן_כאן_את_קוד_הדף_PAGE_CODE",
+    userId: "הזן_כאן_את_מזהה_המשתמש_USER_ID",
+    apiKey: "הזן_כאן_את_מפתח_ה-API_של_משולם",
+    paymentPageUrl: "https://sandbox.meshulam.co.il/purchase"
+  },
+
   // נקודות קצה עבור האוטומציות של n8n (לחיבור בזמן אמת)
   webhooks: {
     bookingWebhookUrl: "https://segevshmueli0.app.n8n.cloud/webhook/appointment-booking",
     appointmentConfirmedWebhookUrl: "https://segevshmueli0.app.n8n.cloud/webhook/appointment-confirmed",
-    calendarSyncWebhookUrl: "https://segevshmueli0.app.n8n.cloud/webhook/available-slots"
+    calendarSyncWebhookUrl: "https://segevshmueli0.app.n8n.cloud/webhook/available-slots",
+    // וובהוקים ייעודיים לסליקת משולם וטוקניזציה
+    meshulamChargeTokenWebhookUrl: "https://segevshmueli0.app.n8n.cloud/webhook/meshulam-charge-token",
+    meshulamPaymentIpnWebhookUrl: "https://segevshmueli0.app.n8n.cloud/webhook/meshulam-payment-ipn"
   }
 };
