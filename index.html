@@ -21,31 +21,40 @@
   <meta name="twitter:title" content="SEAI — אוטומציות עסקיות ובינה מלאכותית">
   <meta name="twitter:description" content="תכנון ובנייה של אוטומציות עסקיות, סוכני בינה מלאכותית, ניהול תורים ואינטגרציות חכמות.">
   <meta name="twitter:image" content="https://segevshmuali-eng.github.io/assets/hero-ai.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg-base: #050811;
-      --bg-elevated: #0b1222;
-      --surface: rgba(15, 23, 42, 0.74);
-      --surface-solid: #0f172a;
-      --surface-hover: rgba(23, 35, 62, 0.88);
-      --border: rgba(148, 163, 184, 0.14);
-      --border-strong: rgba(56, 189, 248, 0.36);
-      --ink: #f8fafc;
-      --ink-secondary: #cbd5e1;
-      --muted: #94a3b8;
-      --cyan: #06b6d4;
-      --cyan-bright: #22d3ee;
-      --blue: #3b82f6;
-      --indigo: #6366f1;
-      --emerald: #10b981;
-      --amber: #f59e0b;
-      --radius-lg: 20px;
+      /* Terminal Industries Inspired Industrial Palette */
+      --bg-base: #050d0f;
+      --bg-surface: #091719;
+      --bg-card: rgba(10, 24, 27, 0.76);
+      --bg-card-hover: rgba(14, 33, 37, 0.94);
+      
+      --lime: #abff02;
+      --lime-glow: rgba(171, 255, 2, 0.32);
+      --lime-dim: rgba(171, 255, 2, 0.12);
+      --lime-border: rgba(171, 255, 2, 0.4);
+      
+      --cyan-tech: #00f0ff;
+      --cyan-dim: rgba(0, 240, 255, 0.1);
+      
+      --ink: #f4f7f6;
+      --ink-secondary: #c2cfcc;
+      --muted: #7d9390;
+      
+      --border-subtle: rgba(125, 147, 144, 0.16);
+      --border-card: rgba(255, 255, 255, 0.08);
+
+      --radius-sm: 8px;
       --radius-md: 14px;
-      --font-head: 'Heebo', Arial, sans-serif;
-      --font-body: 'Assistant', 'Heebo', Arial, sans-serif;
+      --radius-lg: 20px;
+      
+      --font-head: 'IBM Plex Sans Hebrew', Arial, sans-serif;
+      --font-body: 'IBM Plex Sans Hebrew', Arial, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -67,30 +76,48 @@
       text-align: right;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Architectural Background Grid + Ambient Glow */
-    .bg-grid {
+    /* Interactive Living Particles Canvas Background */
+    #meshCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Precision Technical Grid Background */
+    .industrial-grid {
       position: fixed;
       inset: 0;
       z-index: -2;
+      pointer-events: none;
       background-image:
-        linear-gradient(to left, rgba(148, 163, 184, 0.045) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, #000 35%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, #000 35%, transparent 100%);
+        linear-gradient(to left, rgba(125, 147, 144, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(125, 147, 144, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, #000 45%, transparent 95%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, #000 45%, transparent 95%);
     }
 
-    .bg-glow {
+    .ambient-glow {
       position: fixed;
       inset: 0;
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(640px circle at 82% 10%, rgba(6, 182, 212, 0.14), transparent 60%),
-        radial-gradient(560px circle at 18% 22%, rgba(59, 130, 246, 0.12), transparent 60%),
-        radial-gradient(600px circle at 50% 85%, rgba(99, 102, 241, 0.08), transparent 65%);
+        radial-gradient(850px circle at 85% 15%, rgba(171, 255, 2, 0.08), transparent 65%),
+        radial-gradient(700px circle at 15% 45%, rgba(0, 240, 255, 0.05), transparent 60%),
+        radial-gradient(900px circle at 50% 90%, rgba(171, 255, 2, 0.05), transparent 70%);
+      animation: ambient-pulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambient-pulse {
+      0% { transform: scale(1) translateY(0); opacity: 0.8; }
+      100% { transform: scale(1.06) translateY(-20px); opacity: 1; }
     }
 
     a {
@@ -100,55 +127,128 @@
 
     .container {
       width: 100%;
-      max-width: 1180px;
+      max-width: 1220px;
       margin: 0 auto;
-      padding: 0 22px;
+      padding: 0 24px;
     }
 
     .mono {
       font-family: var(--font-mono);
+      letter-spacing: -0.02em;
       font-variant-numeric: tabular-nums;
     }
 
-    /* Navbar */
+    /* Telemetry Top Bar with Live Clock */
+    .telemetry-bar {
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(3, 10, 11, 0.92);
+      backdrop-filter: blur(8px);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      padding: 7px 0;
+      position: relative;
+      z-index: 70;
+    }
+
+    .telemetry-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .telemetry-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 0 rgba(171, 255, 2, 0.7);
+      animation: pulse-lime 2s infinite;
+    }
+
+    @keyframes pulse-lime {
+      0% { box-shadow: 0 0 0 0 rgba(171, 255, 2, 0.8); }
+      70% { box-shadow: 0 0 0 8px rgba(171, 255, 2, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(171, 255, 2, 0); }
+    }
+
+    .live-clock {
+      color: var(--lime);
+      font-weight: 700;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* Industrial Header / Navbar */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 60;
-      background: rgba(5, 8, 17, 0.8);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(5, 14, 16, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.25s ease;
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 74px;
-      gap: 16px;
+      height: 76px;
+      gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
-      border: 1px solid rgba(34, 211, 238, 0.45);
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #0b1e21;
+      border: 1px solid var(--lime-border);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-head);
-      font-weight: 900;
+      font-family: var(--font-mono);
+      font-weight: 700;
       font-size: 18px;
-      color: var(--cyan-bright);
-      box-shadow: 0 0 22px rgba(6, 182, 212, 0.22);
+      color: var(--lime);
+      box-shadow: 0 0 20px rgba(171, 255, 2, 0.2);
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .brand:hover .brand-mark {
+      transform: scale(1.06) rotate(-3deg);
+      box-shadow: 0 0 28px rgba(171, 255, 2, 0.4);
+    }
+
+    .brand-mark::after {
+      content: '+';
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      font-size: 11px;
+      color: var(--lime);
+      font-family: var(--font-mono);
+      animation: spin-slow 8s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .brand-text {
@@ -160,9 +260,29 @@
     .brand-name {
       font-family: var(--font-head);
       font-weight: 900;
-      font-size: 20px;
-      letter-spacing: 0.03em;
+      font-size: 22px;
+      letter-spacing: 0.04em;
       color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: var(--lime-dim);
+      color: var(--lime);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--lime-border);
+      font-weight: 700;
+      animation: pulse-badge 3s infinite alternate;
+    }
+
+    @keyframes pulse-badge {
+      0% { border-color: rgba(171, 255, 2, 0.3); box-shadow: 0 0 0 rgba(171, 255, 2, 0); }
+      100% { border-color: var(--lime); box-shadow: 0 0 10px rgba(171, 255, 2, 0.25); }
     }
 
     .brand-sub {
@@ -174,617 +294,1092 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
-      font-size: 15px;
+      gap: 32px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--ink-secondary);
+      letter-spacing: 0.01em;
     }
 
     .nav-links a {
       transition: color 0.15s ease;
+      position: relative;
+      padding: 6px 0;
     }
 
     .nav-links a:hover {
-      color: var(--cyan-bright);
+      color: var(--lime);
     }
 
-    /* Buttons */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 2px;
+      background: var(--lime);
+      box-shadow: 0 0 8px var(--lime);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Terminal Action Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 11px 22px;
-      border-radius: 12px;
+      gap: 9px;
+      padding: 12px 24px;
+      border-radius: 8px;
       font-family: var(--font-head);
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       cursor: pointer;
       border: 1px solid transparent;
-      transition: all 0.18s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.02em;
     }
 
-    .btn-cyan {
-      background: linear-gradient(135deg, var(--cyan), var(--blue));
-      color: #03111c;
-      box-shadow: 0 6px 24px rgba(6, 182, 212, 0.28);
+    /* Shimmer Sweep Animation on Buttons */
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: rotate(25deg);
+      transition: none;
     }
 
-    .btn-cyan:hover {
+    .btn:hover::after {
+      left: 130%;
+      transition: left 0.65s ease;
+    }
+
+    /* Terminal Electric Lime Button */
+    .btn-lime {
+      background: var(--lime);
+      color: #041213;
+      border-color: var(--lime);
+      box-shadow: 0 4px 20px rgba(171, 255, 2, 0.28);
+      font-weight: 800;
+    }
+
+    .btn-lime:hover {
+      background: #befe28;
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.42);
-      filter: brightness(1.06);
+      box-shadow: 0 8px 30px rgba(171, 255, 2, 0.45);
     }
 
-    .btn-glass {
-      background: rgba(15, 23, 42, 0.72);
+    .btn-outline {
+      background: rgba(13, 27, 30, 0.65);
       color: var(--ink);
-      border-color: var(--border);
+      border-color: var(--border-subtle);
+      backdrop-filter: blur(8px);
     }
 
-    .btn-glass:hover {
-      background: rgba(30, 41, 59, 0.9);
-      border-color: var(--border-strong);
-      transform: translateY(-1px);
+    .btn-outline:hover {
+      border-color: var(--lime);
+      color: var(--lime);
+      background: rgba(171, 255, 2, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(171, 255, 2, 0.15);
     }
 
-    /* Hero */
+    /* Hero Section */
     .hero {
-      padding: 72px 0 64px;
+      padding: 88px 0 76px;
+      position: relative;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 40px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
       align-items: center;
     }
 
-    .status-pill {
+    .status-ticker {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid rgba(34, 211, 238, 0.28);
-      color: #a5f3fc;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 20px;
+      gap: 12px;
+      padding: 7px 16px;
+      border-radius: 6px;
+      background: rgba(13, 29, 32, 0.85);
+      border: 1px solid var(--lime-border);
+      color: var(--lime);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      box-shadow: 0 0 20px rgba(171, 255, 2, 0.1);
+      position: relative;
     }
 
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--emerald);
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    .status-ticker-badge {
+      background: var(--lime);
+      color: #041213;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.04em;
     }
 
     .hero h1 {
       font-family: var(--font-head);
-      font-size: clamp(32px, 4.4vw, 52px);
+      font-size: clamp(34px, 4.6vw, 56px);
       font-weight: 900;
-      line-height: 1.14;
-      letter-spacing: -0.02em;
-      margin: 0 0 18px;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 0 0 22px;
+      color: #ffffff;
     }
 
-    .gradient-text {
-      background: linear-gradient(90deg, #22d3ee, #60a5fa, #818cf8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .hero h1 .highlight-lime {
+      color: var(--lime);
+      text-shadow: 0 0 30px rgba(171, 255, 2, 0.35);
+      position: relative;
+      display: inline-block;
     }
 
     .hero-sub {
       font-size: 18px;
       color: var(--ink-secondary);
-      margin: 0 0 28px;
-      max-width: 590px;
+      margin: 0 0 32px;
+      max-width: 610px;
+      line-height: 1.7;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 26px;
+      gap: 14px;
+      margin-bottom: 34px;
     }
 
-    .hero-trust {
+    .hero-spec-strip {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
-      font-size: 14px;
+      gap: 24px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 22px;
+      font-size: 13px;
       color: var(--muted);
+      font-family: var(--font-mono);
     }
 
-    .hero-trust span {
+    .hero-spec-strip span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .hero-trust b {
-      color: var(--emerald);
+    .hero-spec-strip b {
+      color: var(--lime);
     }
 
-    /* Hero Visual Showcase */
-    .hero-visual-frame {
+    /* Hero Visual Card with Live Console & Radar Scanline */
+    .hero-visual-card {
       position: relative;
       border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
       overflow: hidden;
-      background: #050811;
-      border: 1px solid rgba(56, 189, 248, 0.24);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.62), 0 0 42px rgba(6, 182, 212, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.7);
+      transition: all 0.4s ease;
     }
 
-    .hero-visual-frame::after {
-      content: "";
+    .hero-visual-card:hover {
+      border-color: var(--lime-border);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8), 0 0 30px rgba(171, 255, 2, 0.15);
+    }
+
+    .hero-visual-card::before {
+      content: '+';
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(6, 182, 212, 0.04) 0%, transparent 35%, rgba(5, 8, 17, 0.28) 100%);
+      top: 12px;
+      right: 12px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--lime);
+      z-index: 10;
     }
 
-    .hero-visual-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
+    .hero-visual-card::after {
+      content: '+';
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--lime);
+      z-index: 10;
     }
 
-    /* Infinite Tech Marquee Strip */
-    .tech-strip {
-      padding: 18px 0 48px;
-    }
-
-    .tech-strip-inner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 22px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      overflow: hidden;
-    }
-
-    .tech-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--muted);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .marquee-viewport {
-      position: relative;
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      direction: ltr;
-      mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marqueeScroll 26s linear infinite;
-    }
-
-    .marquee-viewport:hover .marquee-track {
-      animation-play-state: paused;
-    }
-
-    .marquee-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-right: 12px;
-      flex-shrink: 0;
-    }
-
-    @keyframes marqueeScroll {
-      0% {
-        transform: translate3d(0, 0, 0);
-      }
-      100% {
-        transform: translate3d(-50%, 0, 0);
-      }
-    }
-
-    .tech-pill {
+    /* Floating Corner Telemetry Pill */
+    .hero-telemetry-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 10;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: 5px 11px;
+      border-radius: 6px;
+      background: rgba(5, 14, 16, 0.76);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--lime-border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
       font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 7px 14px;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border);
-      color: var(--ink-secondary);
+      font-size: 10px;
+      color: var(--lime);
+      direction: ltr;
+      letter-spacing: 0.04em;
+      transition: all 0.3s ease;
+    }
+
+    .hero-visual-card:hover .hero-telemetry-badge {
+      border-color: var(--lime);
+      box-shadow: 0 0 16px rgba(171, 255, 2, 0.25);
+    }
+
+    .telemetry-equalizer {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 10px;
+    }
+
+    .telemetry-equalizer span {
+      width: 2px;
+      background: var(--lime);
+      border-radius: 1px;
+      animation: eq-bounce 1.3s ease-in-out infinite alternate;
+    }
+
+    .telemetry-equalizer span:nth-child(1) { height: 45%; animation-delay: 0.1s; }
+    .telemetry-equalizer span:nth-child(2) { height: 90%; animation-delay: 0.35s; }
+    .telemetry-equalizer span:nth-child(3) { height: 60%; animation-delay: 0.2s; }
+
+    @keyframes eq-bounce {
+      0% { height: 25%; }
+      100% { height: 100%; }
+    }
+
+    /* Laser Scanline Animation */
+    .scanline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--lime), transparent);
+      box-shadow: 0 0 14px var(--lime);
+      z-index: 8;
+      pointer-events: none;
+      animation: scanline-sweep 4.5s ease-in-out infinite;
+    }
+
+    @keyframes scanline-sweep {
+      0% { top: 0%; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      filter: contrast(1.05) brightness(0.92);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-visual-card:hover .hero-img {
+      transform: scale(1.03);
+    }
+
+    /* Live Autonomous Terminal HUD Overlay */
+    .hero-console-hud {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      left: 14px;
+      background: rgba(6, 17, 19, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--lime-border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      z-index: 9;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      direction: ltr;
+      text-align: left;
+    }
+
+    .hud-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hud-header-title {
+      color: var(--lime);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hud-log-stream {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.55;
+      color: #9eb8b3;
+      height: 52px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hud-log-line {
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: log-fade 6s infinite;
+    }
+
+    .hud-log-line:nth-child(1) { animation-delay: 0s; }
+    .hud-log-line:nth-child(2) { animation-delay: 2s; }
+    .hud-log-line:nth-child(3) { animation-delay: 4s; }
+
+    @keyframes log-fade {
+      0% { opacity: 0; transform: translateY(8px); }
+      8% { opacity: 1; transform: translateY(0); }
+      28% { opacity: 1; transform: translateY(0); }
+      33% { opacity: 0; transform: translateY(-8px); }
+      100% { opacity: 0; transform: translateY(-8px); }
+    }
+
+    .log-tag {
+      color: var(--lime);
+      font-weight: 700;
+    }
+
+    /* Live Tech Marquee Strip */
+    .tech-strip {
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(6, 17, 19, 0.7);
+      padding: 16px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tech-strip-inner {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .tech-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
       white-space: nowrap;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .marquee-viewport {
+      overflow: hidden;
+      white-space: nowrap;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      flex: 1;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: ticker-slide 28s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes ticker-slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(50%); }
+    }
+
+    .marquee-group {
+      display: inline-flex;
+      gap: 12px;
+      padding-left: 12px;
+    }
+
+    .tech-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-secondary);
+      background: rgba(12, 28, 31, 0.9);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 14px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .tech-pill::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--cyan-bright), var(--blue));
-      box-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
-      flex-shrink: 0;
+      content: '//';
+      color: var(--lime);
+      opacity: 0.6;
+      font-size: 10px;
     }
 
     .tech-pill:hover {
-      border-color: var(--border-strong);
+      border-color: var(--lime);
       color: #ffffff;
+      background: rgba(171, 255, 2, 0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(171, 255, 2, 0.2);
     }
 
-    /* Sections */
-    section {
-      padding: 72px 0;
+    /* Bento Architectural Grid */
+    .bento-section {
+      padding: 72px 0 88px;
+      position: relative;
     }
 
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .bento-cell {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Staggered Fade-In on Scroll (sequential left-to-right delay) */
+    .bento-grid.active .bento-cell {
+      animation: bentoStaggerFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: var(--stagger-delay, 0s);
+    }
+
+    @keyframes bentoStaggerFade {
+      0% {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Subtle Border Highlight on Cell Hover */
+    .bento-cell:hover {
+      border-color: var(--lime);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 24px rgba(171, 255, 2, 0.14);
+      transform: translateY(-4px);
+    }
+
+    .bento-span-7 { grid-column: span 7; }
+    .bento-span-5 { grid-column: span 5; }
+    .bento-span-4 { grid-column: span 4; }
+    .bento-span-6 { grid-column: span 6; }
+    .bento-span-12 { grid-column: span 12; }
+
+    .bento-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .bento-logo-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(8, 20, 22, 0.9);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--lime);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .bento-cell:hover .bento-logo-wrap {
+      border-color: var(--lime-border);
+      box-shadow: 0 0 20px rgba(171, 255, 2, 0.25);
+      transform: scale(1.05);
+    }
+
+    .bento-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .bento-cell h3 {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+
+    .bento-cell p {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0 0 20px;
+      line-height: 1.6;
+    }
+
+    .bento-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .bento-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #9eb8b3;
+      background: rgba(6, 17, 19, 0.85);
+      border: 1px solid var(--border-subtle);
+      padding: 3px 8px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .bento-cell:hover .bento-tag {
+      border-color: rgba(171, 255, 2, 0.3);
+      color: #e2fce2;
+    }
+
+    /* Section Headers */
     .section-head {
-      margin-bottom: 36px;
+      margin-bottom: 48px;
+      position: relative;
     }
 
     .section-kicker {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
+      color: var(--lime);
       font-weight: 700;
-      color: var(--cyan-bright);
-      margin-bottom: 6px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .section-title {
       font-family: var(--font-head);
-      font-size: clamp(26px, 3.2vw, 36px);
+      font-size: clamp(28px, 3.6vw, 42px);
       font-weight: 900;
-      margin: 0 0 10px;
-      line-height: 1.2;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      color: #ffffff;
     }
 
     .section-desc {
-      margin: 0;
+      font-size: 17px;
       color: var(--muted);
-      font-size: 16px;
-      max-width: 660px;
+      max-width: 620px;
+      margin: 0;
     }
 
-    /* Featured + Grid Projects */
+    /* Projects Architecture */
+    section {
+      padding: 92px 0;
+      position: relative;
+    }
+
     .projects-layout {
       display: grid;
-      gap: 24px;
+      gap: 28px;
     }
 
-    .project-featured {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(14, 29, 58, 0.85));
-      border: 1px solid rgba(34, 211, 238, 0.28);
+    /* Mouse Spotlight Tracker on Cards */
+    .spotlight-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 32px;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(171, 255, 2, 0.1), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    .spotlight-card:hover {
+      border-color: var(--lime-border);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 25px rgba(171, 255, 2, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Flagship Project Card - Industrial Command Style */
+    .flagship-card {
+      padding: 42px;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      gap: 40px;
+      position: relative;
     }
 
-    .projects-subgrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+    .corner-cross {
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--lime);
+      opacity: 0.7;
+      z-index: 2;
     }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    }
+    .corner-tl { top: 12px; right: 12px; }
+    .corner-br { bottom: 12px; left: 12px; }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-strong);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .card-top {
-      display: flex;
+    .badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--lime-dim);
+      color: var(--lime);
+      border: 1px solid var(--lime-border);
       margin-bottom: 16px;
     }
 
-    .card-ico {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(34, 211, 238, 0.28);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
-
-    .badge {
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.12);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.32);
-    }
-
-    .badge-cyan {
-      background: rgba(6, 182, 212, 0.14);
-      color: #67e8f9;
-      border-color: rgba(34, 211, 238, 0.35);
-    }
-
-    .badge-amber {
-      background: rgba(245, 158, 11, 0.12);
-      color: #fcd34d;
-      border-color: rgba(245, 158, 11, 0.32);
-    }
-
-    .card h3,
-    .project-featured h3 {
+    .flagship-card h3 {
       font-family: var(--font-head);
-      font-size: 22px;
-      font-weight: 800;
-      margin: 0 0 10px;
-      line-height: 1.28;
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 900;
+      margin: 0 0 14px;
+      color: #ffffff;
+      line-height: 1.25;
     }
 
-    .card p,
-    .project-featured p {
-      margin: 0 0 18px;
+    .flagship-card p {
+      font-size: 16px;
       color: var(--ink-secondary);
-      font-size: 15px;
-    }
-
-    .before-after {
-      display: grid;
-      gap: 12px;
-      background: rgba(5, 8, 17, 0.55);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      align-self: center;
-    }
-
-    .ba-block {
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 14px;
-    }
-
-    .ba-before {
-      background: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.22);
-      color: #fecaca;
-    }
-
-    .ba-after {
-      background: rgba(16, 185, 129, 0.08);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      color: #a7f3d0;
-    }
-
-    .ba-label {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 12px;
-      display: block;
-      margin-bottom: 4px;
-      opacity: 0.9;
+      margin: 0 0 22px;
+      line-height: 1.65;
     }
 
     .check-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 18px;
+      margin: 0 0 26px;
       display: grid;
-      gap: 8px;
+      gap: 10px;
       font-size: 14px;
       color: var(--ink-secondary);
     }
 
     .check-list li {
       display: flex;
-      gap: 8px;
       align-items: flex-start;
+      gap: 10px;
     }
 
     .check-list li::before {
-      content: "✓";
-      color: var(--cyan-bright);
+      content: '✓';
+      color: var(--lime);
       font-weight: 900;
-      flex-shrink: 0;
+      font-family: var(--font-mono);
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 26px;
     }
 
     .tag {
       font-family: var(--font-mono);
       font-size: 11px;
+      background: rgba(13, 27, 30, 0.9);
+      color: var(--ink-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
       padding: 4px 10px;
-      border-radius: 7px;
-      background: rgba(30, 41, 59, 0.75);
-      border: 1px solid var(--border);
-      color: #cbd5e1;
+      transition: all 0.2s ease;
+    }
+
+    .tag:hover {
+      border-color: var(--lime);
+      color: var(--lime);
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
-    /* Interactive ROI Calculator */
-    .roi-box {
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(11, 18, 34, 0.95));
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
+    /* Before/After Industrial Matrix */
+    .ba-matrix {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .ba-block {
+      background: rgba(8, 20, 22, 0.95);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      border: 1px solid var(--border-subtle);
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .ba-block:hover {
+      transform: translateX(-4px);
+    }
+
+    .ba-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .ba-before {
+      border-color: rgba(239, 68, 68, 0.28);
+      background: rgba(239, 68, 68, 0.03);
+    }
+
+    .ba-before .ba-label {
+      color: #f87171;
+    }
+
+    .ba-after {
+      border-color: var(--lime-border);
+      background: rgba(171, 255, 2, 0.04);
+      box-shadow: 0 0 24px rgba(171, 255, 2, 0.06);
+    }
+
+    .ba-after .ba-label {
+      color: var(--lime);
+    }
+
+    /* Subgrid Projects */
+    .projects-subgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .card-ico {
+      font-size: 26px;
+      filter: drop-shadow(0 0 8px rgba(171, 255, 2, 0.3));
+    }
+
+    .card-ico-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(8, 20, 22, 0.9);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--lime);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-ico-box {
+      border-color: var(--lime-border);
+      box-shadow: 0 0 18px rgba(171, 255, 2, 0.22);
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 10px;
+      color: #ffffff;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0 0 18px;
+      line-height: 1.6;
+    }
+
+    /* Terminal ROI Calculator Engine */
+    .roi-panel {
+      padding: 42px;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
-      align-items: center;
+      gap: 40px;
+      position: relative;
     }
 
-    .sliders {
-      display: grid;
-      gap: 22px;
+    .slider-row {
+      margin-bottom: 24px;
     }
 
     .slider-row label {
       display: flex;
       justify-content: space-between;
-      font-weight: 700;
+      align-items: center;
       font-size: 15px;
-      margin-bottom: 8px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--ink-secondary);
     }
 
-    .slider-row input[type="range"] {
+    .slider-row .mono {
+      color: var(--lime);
+      font-weight: 700;
+      font-size: 16px;
+      text-shadow: 0 0 10px rgba(171, 255, 2, 0.3);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
       width: 100%;
-      accent-color: var(--cyan);
-      cursor: pointer;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(125, 147, 144, 0.25);
+      outline: none;
+      direction: rtl;
     }
 
-    .roi-results {
-      background: rgba(5, 8, 17, 0.7);
-      border: 1px solid rgba(34, 211, 238, 0.25);
-      border-radius: 16px;
-      padding: 24px;
-      display: grid;
-      gap: 16px;
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--lime);
+      cursor: pointer;
+      box-shadow: 0 0 16px var(--lime);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+      box-shadow: 0 0 22px var(--lime);
+    }
+
+    .roi-metrics-grid {
+      background: rgba(5, 14, 16, 0.94);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .roi-metric-item {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+    }
+
+    .roi-metric-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     .roi-metric-label {
-      font-size: 13px;
+      font-family: var(--font-mono);
+      font-size: 12px;
       color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
     }
 
     .roi-metric-val {
-      font-family: var(--font-mono);
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--cyan-bright);
-      line-height: 1.15;
+      font-family: var(--font-head);
+      font-size: 36px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.1;
+      transition: all 0.2s ease;
     }
 
-    .roi-metric-val.green {
-      color: #34d399;
+    .roi-metric-val.lime {
+      color: var(--lime);
+      text-shadow: 0 0 25px rgba(171, 255, 2, 0.4);
     }
 
-    /* Methodology */
+    /* Industrial Methodology / Process Steps */
     .steps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
     }
 
     .step-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 24px;
+      padding: 34px 26px;
+      position: relative;
     }
 
     .step-num {
       font-family: var(--font-mono);
       font-size: 13px;
       font-weight: 700;
-      color: var(--cyan-bright);
-      margin-bottom: 8px;
+      color: var(--lime);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .step-card h4 {
       font-family: var(--font-head);
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
-      margin: 0 0 8px;
+      margin: 0 0 10px;
+      color: #ffffff;
     }
 
     .step-card p {
       margin: 0;
       font-size: 14px;
-      color: var(--muted);
+      color: var(--ink-secondary);
+      line-height: 1.6;
     }
 
-    /* Contact */
-    .contact-panel {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.14), rgba(59, 130, 246, 0.14));
-      border: 1px solid rgba(34, 211, 238, 0.32);
-      border-radius: 24px;
-      padding: 48px 32px;
+    /* Contact High-Voltage Terminal Banner */
+    .contact-banner {
+      background: linear-gradient(135deg, rgba(14, 30, 33, 0.96), rgba(6, 17, 19, 0.96));
+      border: 1px solid var(--lime-border);
+      border-radius: var(--radius-lg);
+      padding: 60px 36px;
       text-align: center;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65), 0 0 35px rgba(171, 255, 2, 0.12);
+      position: relative;
     }
 
-    .contact-panel h2 {
+    .contact-banner h2 {
       font-family: var(--font-head);
-      font-size: clamp(26px, 3.4vw, 36px);
+      font-size: clamp(28px, 3.8vw, 42px);
       font-weight: 900;
-      margin: 0 0 12px;
+      margin: 0 0 14px;
+      color: #ffffff;
+      letter-spacing: -0.02em;
     }
 
-    .contact-panel p {
-      margin: 0 auto 26px;
-      max-width: 560px;
+    .contact-banner p {
+      margin: 0 auto 30px;
+      max-width: 580px;
       color: var(--ink-secondary);
       font-size: 17px;
     }
 
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .contact-email-display {
-      margin-top: 16px;
+    .contact-email-tag {
+      margin-top: 22px;
       font-family: var(--font-mono);
-      font-size: 14px;
-      color: #a5f3fc;
+      font-size: 15px;
+      color: var(--lime);
+      display: inline-block;
+      direction: ltr;
+      padding: 6px 14px;
+      background: rgba(171, 255, 2, 0.08);
+      border: 1px solid var(--lime-border);
+      border-radius: 6px;
+      text-shadow: 0 0 12px rgba(171, 255, 2, 0.3);
     }
 
+    /* Footer */
     footer {
-      padding: 30px 0 40px;
-      border-top: 1px solid var(--border);
+      padding: 38px 0 46px;
+      border-top: 1px solid var(--border-subtle);
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
+      font-family: var(--font-mono);
     }
 
     .footer-inner {
@@ -792,19 +1387,32 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
     }
 
-    /* Modal */
+    /* Scroll Reveal Class */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Architecture Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(2, 6, 23, 0.78);
-      backdrop-filter: blur(6px);
+      background: rgba(3, 9, 10, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px;
       z-index: 120;
     }
 
@@ -813,169 +1421,273 @@
     }
 
     .modal {
-      background: #0b1222;
-      border: 1px solid rgba(56, 189, 248, 0.32);
-      border-radius: 20px;
-      max-width: 700px;
+      background: var(--bg-surface);
+      border: 1px solid var(--lime-border);
+      border-radius: var(--radius-lg);
+      max-width: 720px;
       width: 100%;
       max-height: 88vh;
       overflow-y: auto;
-      padding: 30px;
+      padding: 36px;
       position: relative;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 35px 100px rgba(0, 0, 0, 0.85), 0 0 40px rgba(171, 255, 2, 0.15);
+      animation: modal-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modal-enter {
+      from { opacity: 0; transform: scale(0.95) translateY(15px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .modal-close {
       position: absolute;
-      top: 18px;
-      left: 18px;
+      top: 20px;
+      left: 20px;
       width: 36px;
       height: 36px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: rgba(30, 41, 59, 0.8);
-      color: #ffffff;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(13, 27, 30, 0.8);
+      color: var(--ink);
+      font-family: var(--font-mono);
       font-size: 16px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      border-color: var(--lime);
+      color: var(--lime);
+      transform: rotate(90deg);
     }
 
     .modal h3 {
       font-family: var(--font-head);
-      font-size: 22px;
-      font-weight: 800;
-      margin: 0 0 10px;
+      font-size: 24px;
+      font-weight: 900;
+      margin: 0 0 8px;
       padding-left: 40px;
+      color: #ffffff;
     }
 
     .modal-steps {
       display: grid;
-      gap: 10px;
-      margin: 18px 0 22px;
+      gap: 12px;
+      margin: 22px 0 26px;
     }
 
     .modal-step {
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 13px 16px;
+      background: rgba(13, 27, 30, 0.9);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
       font-size: 14px;
       color: var(--ink-secondary);
+      line-height: 1.6;
+      transition: border-color 0.2s ease;
+    }
+
+    .modal-step:hover {
+      border-color: var(--lime-border);
     }
 
     .modal-step strong {
       display: block;
-      color: var(--cyan-bright);
-      font-family: var(--font-head);
-      margin-bottom: 3px;
+      color: var(--lime);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      margin-bottom: 4px;
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 960px) {
       .hero-grid,
-      .project-featured,
-      .roi-box {
+      .flagship-card,
+      .roi-panel {
         grid-template-columns: 1fr;
+      }
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .bento-span-7,
+      .bento-span-5,
+      .bento-span-4,
+      .bento-span-6,
+      .bento-span-12 {
+        grid-column: span 1 !important;
       }
       .nav-links {
         display: none;
       }
-      .tech-strip-inner {
+      .telemetry-inner {
         flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
+        align-items: flex-start;
+        gap: 6px;
       }
-      .marquee-viewport {
-        width: 100%;
+      .flagship-card {
+        padding: 24px;
+      }
+      .roi-panel {
+        padding: 24px;
+      }
+      .contact-banner {
+        padding: 36px 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-glow" aria-hidden="true"></div>
+  <!-- Living Interactive Mesh Canvas -->
+  <canvas id="meshCanvas"></canvas>
 
+  <div class="industrial-grid" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Telemetry Bar with Live Clock -->
+  <aside class="telemetry-bar">
+    <div class="container telemetry-inner">
+      <div class="telemetry-item">
+        <span class="dot-pulse"></span>
+        <span>SYS.STATUS: <b>מערכות אוטומציה פעילות</b> // UPTIME 99.98%</span>
+      </div>
+      <div class="telemetry-item">
+        <span>TIME: <span id="clockDisplay" class="live-clock">--:--:--</span> IL</span>
+        <span>ENGINE: <b>n8n + AI AGENTS + RAG</b></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#" class="brand">
         <span class="brand-mark">S</span>
         <span class="brand-text">
-          <span class="brand-name">SEAI</span>
+          <span class="brand-name">
+            SEAI
+            <span class="brand-badge">V4.2</span>
+          </span>
           <span class="brand-sub">אוטומציות עסקיות ובינה מלאכותית</span>
         </span>
       </a>
       <nav class="nav-links">
+        <a href="#ecosystem">ארכיטקטורה</a>
         <a href="#projects">פרויקטים</a>
         <a href="#roi">מחשבון חיסכון</a>
         <a href="#process">שיטת העבודה</a>
         <a href="#contact">יצירת קשר</a>
       </nav>
-      <a href="mailto:segevshmuali@gmail.com?subject=שיחת%20אפיון%20-%20SEAI%20אוטומציות%20עסקיות" class="btn btn-cyan">
-        שיחת אפיון במייל
+      <a href="mailto:segevshmuali@gmail.com?subject=שיחת%20אפיון%20-%20SEAI%20אוטומציות%20עסקיות" class="btn btn-lime">
+        תיאום שיחת אפיון
       </a>
     </div>
   </header>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <div class="status-pill">
-            <span class="pulse-dot"></span>
-            <span>אוטומציות עסקיות · סוכני AI · אינטגרציות מערכות</span>
+        <div class="reveal">
+          <div class="status-ticker">
+            <span class="status-ticker-badge">LIVE</span>
+            <span>אוטומציות תפעוליות // סוכני AI // אינטגרציות מורכבות</span>
           </div>
           <h1>
             תהליכים ידניים עוצרים את העסק.<br>
-            <span class="gradient-text">אנחנו הופכים אותם לאוטומציה.</span>
+            <span class="highlight-lime">אנחנו הופכים אותם לאוטומציה.</span>
           </h1>
           <p class="hero-sub">
-            תכנון והקמה של מערכות חכמות המחברות בין המייל, הטלגרם, טבלאות הניהול והאחסון בענן — כדי להחליף עבודת הקלדה ידנית בתהליכים מדויקים שעובדים לבד מסביב לשעון.
+            תכנון והקמה של ארכיטקטורות חכמות המחברות בין המייל, הווטסאפ, טבלאות הניהול ומאגרי הענן — להחלפת עבודה ידנית שוחקת במערכות אוטונומיות הפועלות בדיוק מקסימלי 24/7.
           </p>
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-cyan">לצפייה בפרויקטים בפעולה</a>
-            <a href="#roi" class="btn btn-glass">חישוב חיסכון חודשי לעסק</a>
+            <a href="#projects" class="btn btn-lime">לצפייה בפרויקטים בפעולה</a>
+            <a href="#roi" class="btn btn-outline">חישוב חיסכון שנתי לעסק</a>
           </div>
-          <div class="hero-trust">
-            <span><b>✓</b> מותאם למערכות הקיימות בעסק</span>
-            <span><b>✓</b> בקרת כפילויות והתראות תקלה</span>
-            <span><b>✓</b> ממשק ניהולי ברור בעברית</span>
+          <div class="hero-spec-strip">
+            <span><b>✓</b> התאמה מלאה למערכות הקיימות</span>
+            <span><b>✓</b> בקרת כפילויות ומוקד התראות</span>
+            <span><b>✓</b> ממשק ניהולי ברור ומובן</span>
           </div>
         </div>
 
-        <!-- Hero Visual Artwork -->
-        <div class="hero-visual-frame">
-          <img src="assets/hero-ai.jpg" alt="SEAI — ארכיטקטורת אוטומציה ובינה מלאכותית" class="hero-visual-img">
+        <!-- Hero Visual Frame with Radar Scanline & Terminal HUD -->
+        <div class="hero-visual-card reveal">
+          <div class="scanline"></div>
+          <!-- Corner Telemetry Indicator -->
+          <div class="hero-telemetry-badge" title="מערכות רצות באופן אוטונומי 24/7">
+            <div class="telemetry-equalizer" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span>SYS.LOAD 0.02% // 100% SUCCESS RATE</span>
+          </div>
+          <img src="assets/hero-ai.jpg" alt="SEAI — ארכיטקטורת אוטומציה ובינה מלאכותית" class="hero-img">
+          
+          <!-- Live Terminal HUD Stream -->
+          <div class="hero-console-hud">
+            <div class="hud-header">
+              <span class="hud-header-title">
+                <span class="dot-pulse" style="width: 6px; height: 6px;"></span>
+                TERMINAL CONSOLE // LIVE
+              </span>
+              <span>BUFFER: ACTIVE</span>
+            </div>
+            <div class="hud-log-stream">
+              <div class="hud-log-line">
+                <span class="log-tag">> [GMAIL_SYNC]</span>
+                <span>2 unread tax invoices captured & validated</span>
+              </div>
+              <div class="hud-log-line">
+                <span class="log-tag">> [VISION_AI]</span>
+                <span>Extracted 8 items • FX Rate USD -> ₪3.72</span>
+              </div>
+              <div class="hud-log-line">
+                <span class="log-tag">> [AIRTABLE_MCP]</span>
+                <span>Deduplicated • Stored to Google Drive</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Live Tech Marquee Strip -->
     <div class="tech-strip">
       <div class="container">
         <div class="tech-strip-inner">
-          <span class="tech-label">כלים וטכנולוגיות בחיבור ישיר:</span>
+          <span class="tech-label">// סביבות עבודה:</span>
           <div class="marquee-viewport" aria-label="כלים וטכנולוגיות בחיבור ישיר">
             <div class="marquee-track">
               <div class="marquee-group">
-                <span class="tech-pill">RAG</span>
-                <span class="tech-pill">MCP</span>
-                <span class="tech-pill">n8n</span>
+                <span class="tech-pill">n8n Cloud</span>
+                <span class="tech-pill">AI Agents + Vision</span>
+                <span class="tech-pill">RAG Vector DB</span>
+                <span class="tech-pill">MCP Protocols</span>
                 <span class="tech-pill">Claude Code</span>
                 <span class="tech-pill">Antigravity</span>
-                <span class="tech-pill">API</span>
-                <span class="tech-pill">Apps</span>
-                <span class="tech-pill">Landing Pages</span>
-                <span class="tech-pill">Dashboards</span>
-                <span class="tech-pill">UI / UX</span>
+                <span class="tech-pill">Payment Gateways</span>
+                <span class="tech-pill">Digital Wallets & P2P</span>
+                <span class="tech-pill">APIs & Webhooks</span>
+                <span class="tech-pill">AI Chatbots</span>
+                <span class="tech-pill">DNS Management</span>
+                <span class="tech-pill">Server Integrations</span>
               </div>
               <div class="marquee-group" aria-hidden="true">
-                <span class="tech-pill">RAG</span>
-                <span class="tech-pill">MCP</span>
-                <span class="tech-pill">n8n</span>
+                <span class="tech-pill">n8n Cloud</span>
+                <span class="tech-pill">AI Agents + Vision</span>
+                <span class="tech-pill">RAG Vector DB</span>
+                <span class="tech-pill">MCP Protocols</span>
                 <span class="tech-pill">Claude Code</span>
                 <span class="tech-pill">Antigravity</span>
-                <span class="tech-pill">API</span>
-                <span class="tech-pill">Apps</span>
-                <span class="tech-pill">Landing Pages</span>
-                <span class="tech-pill">Dashboards</span>
-                <span class="tech-pill">UI / UX</span>
+                <span class="tech-pill">Payment Gateways</span>
+                <span class="tech-pill">Digital Wallets & P2P</span>
+                <span class="tech-pill">APIs & Webhooks</span>
+                <span class="tech-pill">AI Chatbots</span>
+                <span class="tech-pill">DNS Management</span>
+                <span class="tech-pill">Server Integrations</span>
               </div>
             </div>
           </div>
@@ -983,184 +1695,417 @@
       </div>
     </div>
 
+    <!-- Bento / Architectural Logo Grid -->
+    <section id="ecosystem" class="bento-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">// ARCHITECTURAL ECOSYSTEM & CORE INTEGRATIONS</div>
+          <h2 class="section-title">תשתיות טכנולוגיות ואינטגרציות ליבה</h2>
+          <p class="section-desc">
+            חיבור ישיר של מנועי אוטומציה, סוכני AI ופרוטוקולי נתונים ברמת פרודקשן ארגונית — ללא צווארי בקבוק.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Cell 1: n8n Orchestration (Span 7) -->
+          <article class="bento-cell spotlight-card bento-span-7">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
+            <div class="bento-top">
+              <div class="bento-logo-wrap" title="n8n Cloud Workflow Orchestration">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+              </div>
+              <span class="bento-index">// 01 WORKFLOW_CORE</span>
+            </div>
+            <div>
+              <span class="badge">ORCHESTRATION ENGINE</span>
+              <h3>n8n Cloud Enterprise Orchestration</h3>
+              <p>
+                תזמור מרכזי של תהליכים עסקיים מקצה לקצה. קליטת וובהוקים מיידית, מנגנוני ניטור אוטונומיים והגנה כפולה מאיבוד מידע.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag">Webhook Triggers</span>
+              <span class="bento-tag">Error-Trigger Alerts</span>
+              <span class="bento-tag">Sub-Workflow Logic</span>
+              <span class="bento-tag">High-Concurrency</span>
+            </div>
+          </article>
+
+          <!-- Cell 2: AI Vision & Agents (Span 5) -->
+          <article class="bento-cell spotlight-card bento-span-5">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
+            <div class="bento-top">
+              <div class="bento-logo-wrap" title="Multimodal AI Vision & OCR">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"></path>
+                  <path d="M18 10a6 6 0 0 1-12 0"></path>
+                  <line x1="12" y1="16" x2="12" y2="22"></line>
+                  <line x1="8" y1="22" x2="16" y2="22"></line>
+                  <circle cx="12" cy="10" r="2"></circle>
+                </svg>
+              </div>
+              <span class="bento-index">// 02 COGNITIVE_VISION</span>
+            </div>
+            <div>
+              <span class="badge">MULTIMODAL AI</span>
+              <h3>סוכני AI וראייה ממוחשבת</h3>
+              <p>
+                פענוח מסמכים מורכבים, סריקת קבלות בעברית ובאנגלית, זיהוי כוונות וסיווג אוטומטי של תנועות כספיות.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag">Claude Code</span>
+              <span class="bento-tag">OpenAI Vision</span>
+              <span class="bento-tag">Document OCR</span>
+              <span class="bento-tag">Antigravity AI</span>
+            </div>
+          </article>
+
+          <!-- Cell 3: MCP Protocols (Span 4) -->
+          <article class="bento-cell spotlight-card bento-span-4">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
+            <div class="bento-top">
+              <div class="bento-logo-wrap" title="Model Context Protocol">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <span class="bento-index">// 03 TOOL_PROTOCOL</span>
+            </div>
+            <div>
+              <span class="badge">DYNAMIC TOOLING</span>
+              <h3>פרוטוקול שרתי MCP</h3>
+              <p>
+                פרוטוקול תקשורת מובנה המאפשר לסוכני הבינה המלאכותית להתממשק ישירות לכל מערכת, קובץ או מאגר נתונים בארגון — כדי לשלוף מידע עדכני בזמן אמת, לקבל תמונת מצב מדויקת ולספק מענה מבוסס עובדות ללא ניחושים.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag">Model Context Protocol</span>
+              <span class="bento-tag">Universal Tool Connectivity</span>
+              <span class="bento-tag">Real-Time Context</span>
+            </div>
+          </article>
+
+          <!-- Cell 4: RAG & Vector Memory (Span 4) -->
+          <article class="bento-cell spotlight-card bento-span-4">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
+            <div class="bento-top">
+              <div class="bento-logo-wrap" title="RAG & Vector Embeddings">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <span class="bento-index">// 04 VECTOR_MEMORY</span>
+            </div>
+            <div>
+              <span class="badge">9.3K+ EMBEDDINGS</span>
+              <h3>זיכרון וקטורי ו-RAG</h3>
+              <p>
+                שליפה סמנטית מהירה מתוך אלפי מסמכים ומערכי שיעור תוך שמירה על הקשר מלא.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag">RAG Vector DB</span>
+              <span class="bento-tag">Semantic Search</span>
+            </div>
+          </article>
+
+          <!-- Cell 5: Fintech & Payments (Span 4) -->
+          <article class="bento-cell spotlight-card bento-span-4">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
+            <div class="bento-top">
+              <div class="bento-logo-wrap" title="Financial Gateways & Billing">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+              </div>
+              <span class="bento-index">// 05 FINTECH_GATE</span>
+            </div>
+            <div>
+              <span class="badge">AUTO BILLING</span>
+              <h3>סליקה וארנקים דיגיטליים בלייב</h3>
+              <p>
+                חיבור עצמאי למערכות סליקה וארנקים דיגיטליים, טוקניזציה להוראות קבע והפקה מיידית של קבלות ירוקות.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag">Payment Gateways</span>
+              <span class="bento-tag">Digital Wallets & P2P</span>
+              <span class="bento-tag">Automated Invoicing</span>
+            </div>
+          </article>
+
+          <!-- Cell 6: Cloud Ingestion (Span 6) -->
+          <article class="bento-cell spotlight-card bento-span-6">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
+            <div class="bento-top">
+              <div class="bento-logo-wrap" title="Multi-Channel Ingestion">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <span class="bento-index">// 06 OMNI_INGESTION</span>
+            </div>
+            <div>
+              <span class="badge">AUTOMATIC CAPTURE</span>
+              <h3>קליטת מידע רב-ערוצית</h3>
+              <p>
+                קליטה ואיסוף אוטונומי של פניות, קבצים ומסמכים מכל ערוצי התקשורת של העסק — תיבות מייל, מערכות מסרים, טפסים וממשקים חיצוניים — תוך מיון חכם, סינון רעשים והעברה מיידית לעיבוד.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag">Multi-Channel Capture</span>
+              <span class="bento-tag">Smart Noise Filtering</span>
+              <span class="bento-tag">Automated Routing</span>
+            </div>
+          </article>
+
+          <!-- Cell 7: Database & File Deduplication (Span 6) -->
+          <article class="bento-cell spotlight-card bento-span-6">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
+            <div class="bento-top">
+              <div class="bento-logo-wrap" title="Cloud Tables & Drive Sync">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <span class="bento-index">// 07 SYNC_DEDUPE</span>
+            </div>
+            <div>
+              <span class="badge">ZERO DUPLICATES</span>
+              <h3>סנכרון בסיסי נתונים והיררכיית ענן</h3>
+              <p>
+                הזנה מסודרת ל-Airtable ו-Google Sheets עם בקרת כפילויות מתמטית, לצד יצירה וקטלוג אוטומטי של קבצים במבנה היררכי ב-Google Drive.
+              </p>
+            </div>
+            <div class="bento-tags">
+              <span class="bento-tag">Airtable MCP</span>
+              <span class="bento-tag">Google Drive File-Tree</span>
+              <span class="bento-tag">Google Sheets Sync</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <section id="projects">
       <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">// PORTFOLIO</div>
+        <div class="section-head reveal">
+          <div class="section-kicker">// PORTFOLIO & ARCHITECTURE</div>
           <h2 class="section-title">פרויקטים ומערכות שנבנו</h2>
           <p class="section-desc">
-            מערכות אמיתיות שתוכננו לפתרון בעיות תפעוליות, חילוץ מידע וחיסכון מוכח בשעות עבודה.
+            מערכות פרודקשן אמיתיות שפותחו כדי לחסוך שעות עבודה ידניות, לחסל טעויות אנוש ולייצר תזרים תפעולי רציף.
           </p>
         </div>
 
         <div class="projects-layout">
-          <!-- Featured Project -->
-          <article class="project-featured">
+          <!-- Flagship Project Card with Spotlight -->
+          <article class="flagship-card spotlight-card reveal">
+            <span class="corner-cross corner-tl">+</span>
+            <span class="corner-cross corner-br">+</span>
             <div>
-              <div class="card-top" style="margin-bottom: 12px;">
-                <span class="badge badge-cyan">פרויקט דגל • הנהלת חשבונות</span>
-              </div>
+              <span class="badge">פרויקט דגל • הנהלת חשבונות ותפעול</span>
               <h3>מערכת אוטונומית לחילוץ, פענוח ותיוק חשבוניות וקבלות</h3>
               <p>
-                מערכת ארגונית החוסכת עבודה ידנית של מנהלת חשבונות: סריקה דו-שעתית של קבלות וחשבוניות מס מהמייל ומבוט טלגרם, הפרדה חכמה מהצעות מחיר וזיכויים, המרת מטבע חוץ בזמן אמת, הזנת פירוט מלא וסיכום ל-Airtable, תיוק היררכי ב-Google Drive והפקת דשבורד HTML למייל.
+                מערכת ארגונית מקיפה המחליפה שעות הקלדה ידניות: סריקה דו-שעתית של מסמכים וקבלות מהמייל ומבוט ווטסאפ ייעודי, סינון הצעות מחיר וזיכויים, המרת מטבע חוץ בזמן אמת, רישום מפורט ב-Airtable, תיוק היררכי ב-Google Drive והפקת דשבורד ביצועים מעוצב.
               </p>
               <ul class="check-list">
-                <li>קריאת קובצי מסמכים ותמונות קבלה בעברית ובאנגלית כולל תרגום אוטומטי</li>
-                <li>פירוט כלל הפעולות המתומחרות ולאחריהן שורת סיכום סה"כ מרוכזת</li>
-                <li>סריקה יזומה ומחיקת כפילויות באמצעות פרוטוקול סוכנים מול Airtable</li>
-                <li>התראת תקלות מיידית בעברית לטכנאי במקרה של כשל</li>
+                <li>פענוח קבצי PDF ותמונות קבלה בעברית ובאנגלית כולל תרגום אוטומטי</li>
+                <li>פירוט מלא של כל הפעולות המתומחרות ולאחריהן שורת סיכום סה"כ</li>
+                <li>סריקה יזומה ומניעת כפילויות באמצעות פרוטוקול סוכנים מול Airtable</li>
+                <li>התראת תקלות מיידית בעברית לטכנאי במקרה של חריגה או כשל</li>
               </ul>
               <div class="tags">
-                <span class="tag">n8n</span>
-                <span class="tag">AI Agent + Vision</span>
+                <span class="tag">n8n Engine</span>
+                <span class="tag">AI Vision Agent</span>
                 <span class="tag">Airtable MCP</span>
-                <span class="tag">Google Drive</span>
-                <span class="tag">Gmail + Telegram</span>
+                <span class="tag">Google Drive API</span>
+                <span class="tag">Gmail + WhatsApp</span>
               </div>
               <div class="actions">
-                <button type="button" class="btn btn-cyan" onclick="openInvoiceModal()">פתיחת מפרט הארכיטקטורה</button>
-                <a href="https://github.com/segevshmuali-eng/invoice-extraction-automation" target="_blank" rel="noopener noreferrer" class="btn btn-glass">
-                  צפייה במאגר בגיטהאב
+                <button type="button" class="btn btn-lime" onclick="openInvoiceModal()">פתיחת מפרט הארכיטקטורה</button>
+                <a href="mailto:segevshmuali@gmail.com?subject=התעניינות%20במערכת%20חילוץ%20חשבוניות" class="btn btn-outline">
+                  התייעצות והטמעה בעסק
                 </a>
               </div>
             </div>
 
-            <div class="before-after">
+            <!-- Before / After Industrial Comparison Matrix -->
+            <div class="ba-matrix">
               <div class="ba-block ba-before">
-                <span class="ba-label">לפני האוטומציה — עבודה ידנית שוחקת</span>
-                חיפוש חשבוניות במייל ובקבוצות, סינון ידני של זיכויים והצעות מחיר, בדיקת שער דולר, הקלדה ידנית של כל שורה, טעויות וכפיליות ותיוק בתיקיות.
+                <span class="ba-label">// לפני האוטומציה — עבודה ידנית שוחקת</span>
+                חיפוש חשבוניות במיילים, בדיקת שערי מט"ח ידנית, סינון קבצים, הקלדת כל שורה ושורה בנפרד, טעויות אנוש, כפילויות ועיכובי תיוק.
               </div>
               <div class="ba-block ba-after">
-                <span class="ba-label">אחרי SEAI — זרימה אוטומטית כל שעתיים</span>
-                שליפה אוטומטית, חילוץ AI מדויק, המרה לשקלים בזמן אמת, כתיבה מסודרת לטבלה בלי כפיליות, תיוק מדויק בדרייב ודשבורד סיכום במייל.
+                <span class="ba-label">// אחרי SEAI — זרימה אוטונומית כל שעתיים</span>
+                שליפה עצמאית, פענוח ראייה ממוחשבת מבוסס AI, המרת מט"ח בזמן אמת, הזנה מסודרת ללא כפילויות, תיוק אוטומטי ודו"ח ביצועים למייל.
               </div>
             </div>
           </article>
 
+          <!-- Subgrid Projects with Spotlight -->
           <div class="projects-subgrid">
             <!-- Appointment Booking & n8n Engine Project -->
-            <article class="card">
+            <article class="card spotlight-card reveal">
               <div>
                 <div class="card-top">
-                  <div class="card-ico">🗓️</div>
-                  <span class="badge" style="background: rgba(6, 182, 212, 0.16); color: var(--cyan-bright); border-color: rgba(34, 211, 238, 0.4);">באוויר • דמו חי</span>
+                  <div class="card-ico-box" title="ניהול תורים ותזמון עסקי">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                      <path d="M9 16l2 2 4-4"></path>
+                    </svg>
+                  </div>
+                  <span class="badge">באוויר • דמו חי</span>
                 </div>
                 <h3>מערכת ניהול תורים מודולרית ומנוע אוטומציות n8n</h3>
                 <p>
-                  פתרון מקצה לקצה לניהול תורים וקליניקות: אפליקציית רשת מעוצבת הניתנת להתאמה לכל עסק תוך 2 דקות, המחוברת לסנכרון יומן גוגל בזמן אמת, קליטת הזמנות לגוגל שיטס, סליקה עצמאית במשולם עם תמיכה ב-bit, טוקניזציה ללקוחות קבועים והפקת קבלות דיגיטליות.
+                  פתרון מלא לניהול יומן וקליניקות: אפליקציית רשת מעוצבת הניתנת להטמעה מיידית בכל עסק, המחוברת לסנכרון יומן Google בזמן אמת, רישום תורים ב-Google Sheets, סליקה עצמאית במגוון חברות סליקה עם תמיכה ב-bit וב-PayBox, טוקניזציה והפקת קבלות דיגיטליות.
                 </p>
                 <ul class="check-list">
                   <li>סנכרון זמינות תורים בלייב מול Google Calendar לפי שעון ישראל</li>
-                  <li>סליקה מאובטחת (Meshulam Gateway), תשלום מהיר ב-bit וטוקניזציה ללקוחות קבועים</li>
-                  <li>סיווג לקוח קבוע מול חד-פעמי עם מנגנון אישור תחילת תור למניעת חיוב שגוי</li>
-                  <li>קליטת תורים אוטומטית ל-Google Sheets וסגירת מעגל סטטוס PAY בזמן אמת</li>
-                  <li>הפקה ומשלוח של קבלות דיגיטליות במייל דרך Morning API (חשבונית ירוקה)</li>
+                  <li>סליקה מאובטחת ואוטומטית במגוון חברות סליקה, כולל תשלום מהיר ב-bit וב-PayBox וטוקניזציה ללקוחות קבועים</li>
+                  <li>הפקה ומשלוח אוטומטי של חשבוניות וקבלות ירוקות דיגיטליות למייל דרך מגוון תוכנות להנהלת חשבונות</li>
+                  <li>אישור תחילת תור אוטומטי למניעת חיובי סרק</li>
                 </ul>
                 <div class="tags">
                   <span class="tag">n8n Cloud</span>
-                  <span class="tag">Meshulam Pay / bit</span>
-                  <span class="tag">Google Calendar API</span>
-                  <span class="tag">Google Sheets</span>
-                  <span class="tag">Morning API</span>
-                  <span class="tag">Live Webhooks</span>
-                  <span class="tag">UX RTL</span>
+                  <span class="tag">Payment Gateways & Wallets</span>
+                  <span class="tag">Google Calendar</span>
+                  <span class="tag">Digital Invoicing APIs</span>
                 </div>
               </div>
-              <div class="actions" style="display: flex; gap: 8px;">
-                <a href="./booking-demo/" target="_blank" rel="noopener noreferrer" class="btn btn-cyan" style="flex: 1; text-align: center;">
+              <div class="actions" style="margin-top: 18px;">
+                <a href="./booking-demo/" target="_blank" rel="noopener noreferrer" class="btn btn-lime" style="width: 100%; text-align: center;">
                   לדמו חי של האפליקציה
-                </a>
-                <a href="https://github.com/segevshmuali-eng/appointment-booking-poc" target="_blank" rel="noopener noreferrer" class="btn btn-glass" style="flex: 1; text-align: center;">
-                  קוד ומדריך ב-GitHub
                 </a>
               </div>
             </article>
 
-            <!-- Base44 Project -->
-            <article class="card">
+            <!-- SEAI College Platform -->
+            <article class="card spotlight-card reveal">
               <div>
                 <div class="card-top">
                   <div class="card-ico">🎓</div>
                   <span class="badge">באוויר • אתר חי</span>
                 </div>
-                <h3>מכללת AI</h3>
+                <h3>מכללת SEAI — פורטל לימודים ומרצה AI אישי</h3>
                 <p>
-                  אפליקציית רשת מתקדמת שנבנתה עבור תחום לימודי ה-AI, המשלבת חוויית משתמש נקייה בעברית, ניהול תהליכים חכמים והתאמה מלאה לצורכי הלקוח.
+                  פלטפורמת למידה חכמה ל-6 מסלולי הייטק וטכנולוגיה, המשלבת פורטל תוכן אינטראקטיבי, מערכת זיהוי וניהול תלמידים, מרצה AI זמין 24/7 ומערכת מבחנים אוטומטית.
                 </p>
                 <ul class="check-list">
-                  <li>בנייה מהירה ומדויקת על תשתית מודרנית</li>
-                  <li>חוויית משתמש מותאמת למחשב ולנייד</li>
-                  <li>שילוב יכולות AI בזרימת העבודה של האתר</li>
+                  <li>מרצה AI אינטראקטיבי (טקסט וקול) המקושר בזמן אמת לנושא השיעור הנלמד</li>
+                  <li>סילבוס מודולרי ל-6 מסלולים עם שיעורי וידאו, תרגולים ומעקב התקדמות אישי</li>
+                  <li>מנגנון זיהוי ואימות תלמידים אוטומטי לצד טופס לידים והרשמה חכם</li>
+                  <li>מבחנים מסכמים (אמריקאי + שאלות פתוחות) עם בדיקה אוטומטית ורישום ציון</li>
                 </ul>
                 <div class="tags">
-                  <span class="tag">Base44</span>
-                  <span class="tag">AI Web App</span>
-                  <span class="tag">UX RTL</span>
+                  <span class="tag">LMS Portal</span>
+                  <span class="tag">AI Voice & Chat</span>
+                  <span class="tag">Student Auth Flow</span>
+                  <span class="tag">Auto-Grading Exams</span>
+                  <span class="tag">Full RTL UX</span>
                 </div>
               </div>
-              <div class="actions">
-                <a href="https://skill-chat-flow.base44.app" target="_blank" rel="noopener noreferrer" class="btn btn-cyan" style="width:100%;">
-                  לצפייה באתר מכללת AI
+              <div class="actions" style="margin-top: 18px;">
+                <a href="https://skill-chat-flow.base44.app" target="_blank" rel="noopener noreferrer" class="btn btn-lime" style="width: 100%;">
+                  לצפייה במכללת SEAI
                 </a>
               </div>
             </article>
 
             <!-- Teachers AI Platform Project -->
-            <article class="card">
+            <article class="card spotlight-card reveal">
               <div>
                 <div class="card-top">
                   <div class="card-ico">📚</div>
-                  <span class="badge" style="background: rgba(16, 185, 129, 0.16); color: var(--emerald); border-color: rgba(16, 185, 129, 0.4);">באוויר • אתר חי</span>
+                  <span class="badge">באוויר • אתר חי</span>
                 </div>
                 <h3>MoraPlus Pro — פלטפורמת AI וסוכן מערכי שיעור</h3>
                 <p>
-                  אפליקציית רשת חכמה לצוותי הוראה המחוברת לסוכן RAG ענן מבוסס בינה מלאכותית ומאגר של מעל 9,300 חומרי לימוד, דפי עזר ותרגולים, המאפשרת מציאה והורדה מיידית של מערכי שיעור, דפי עבודה ודוחות פדגוגיים מותאמים.
+                  מערכת חכמה לצוותי הוראה המחוברת לסוכן RAG מבוסס בינה מלאכותית ומאגר של מעל 9,300 חומרי לימוד, המאפשרת מציאה והורדה מיידית של מערכי שיעור ודוחות מותאמים.
                 </p>
                 <ul class="check-list">
-                  <li>צאט מומחה מחובר למאגר וקטורי של 9,300+ קובצי PDF ו-Word</li>
-                  <li>שליפה והורדה ישירה של קובצי עזר ותרגול לפי נושא ושכבת גיל</li>
-                  <li>סנכרון ענן אוטונומי ב-n8n Cloud, Qdrant Cloud ו-Google Drive</li>
-                  <li>יצירת דו"חות מקצועיים, דיווחים וחישובי זכויות מורה תוך שניות</li>
+                  <li>צ'אט מומחה מחובר למאגר וקטורי של 9,300+ קבצי PDF ו-Word</li>
+                  <li>שליפה והורדה ישירה של קבצי עזר לפי שכבת גיל ומקצוע</li>
+                  <li>סנכרון ענן אוטונומי ב-n8n Cloud, Qdrant ו-Google Drive</li>
                 </ul>
                 <div class="tags">
                   <span class="tag">Base44</span>
-                  <span class="tag">n8n Cloud</span>
-                  <span class="tag">Qdrant Cloud RAG</span>
+                  <span class="tag">Qdrant RAG</span>
                   <span class="tag">OpenAI</span>
-                  <span class="tag">Google Drive API</span>
+                  <span class="tag">n8n Cloud</span>
                 </div>
               </div>
-              <div class="actions">
-                <a href="https://mora-plus-pro.base44.app" target="_blank" rel="noopener noreferrer" class="btn btn-cyan" style="width:100%;">
+              <div class="actions" style="margin-top: 18px;">
+                <a href="https://mora-plus-pro.base44.app" target="_blank" rel="noopener noreferrer" class="btn btn-lime" style="width: 100%;">
                   לכניסה לאפליקציית MoraPlus Pro
                 </a>
               </div>
             </article>
 
             <!-- MCP Server Project -->
-            <article class="card">
+            <article class="card spotlight-card reveal">
               <div>
                 <div class="card-top">
-                  <div class="card-ico">🤖</div>
+                  <div class="card-ico-box" title="שרת נתונים ותשתית MCP">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                      <rect x="9" y="9" width="6" height="6"></rect>
+                      <line x1="9" y1="1" x2="9" y2="4"></line>
+                      <line x1="15" y1="1" x2="15" y2="4"></line>
+                      <line x1="9" y1="20" x2="9" y2="23"></line>
+                      <line x1="15" y1="20" x2="15" y2="23"></line>
+                      <line x1="20" y1="9" x2="23" y2="9"></line>
+                      <line x1="20" y1="14" x2="23" y2="14"></line>
+                      <line x1="1" y1="9" x2="4" y2="9"></line>
+                      <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                  </div>
                   <span class="badge">מקרה בוחן טכנולוגי</span>
                 </div>
-                <h3>שרת מידע חכם לסוכני בינה מלאכותית</h3>
+                <h3>שרת נתונים חכם לסוכני בינה מלאכותית (MCP)</h3>
                 <p>
-                  תשתית המחברת סוכני בינה מלאכותית למאגרי נתונים חיים ולוחות זמנים דינמיים — כך שהסוכן עונה מתוך מידע אמיתי ועדכני במקום להסתמך על ניחושים.
+                  תשתית תקשורת מתקדמת המחברת סוכני AI ישירות למאגרי נתונים חיים ומערכות יומנים — כך שהסוכן פועל מתוך מידע אמיתי, מאובטח ומדויק ללא הזיות.
                 </p>
                 <ul class="check-list">
-                  <li>חשיפת כלי שאילתות ועדכון בשפה טבעית לסוכן</li>
-                  <li>עמידות, מהירות ותמיכה בעדכון רשומות בזמן אמת</li>
-                  <li>מתאים למוקדי שירות, קהילות ועסקים</li>
+                  <li>חשיפת כלי שאילתות ועדכון נתונים בשפה טבעית</li>
+                  <li>אבטחה מקסימלית ועמידות בעומסים בזמן אמת</li>
+                  <li>התאמה למוקדי שירות, סוכנויות וארגונים</li>
                 </ul>
                 <div class="tags">
-                  <span class="tag">MCP Server</span>
+                  <span class="tag">MCP Protocol</span>
                   <span class="tag">Python</span>
                   <span class="tag">n8n Cloud</span>
                 </div>
               </div>
-              <div class="actions">
-                <a href="mailto:segevshmuali@gmail.com?subject=התעניינות%20בתשתית%20MCP%20לעסק" class="btn btn-glass" style="width:100%;">
+              <div class="actions" style="margin-top: 18px;">
+                <a href="mailto:segevshmuali@gmail.com?subject=התעניינות%20בתשתית%20MCP%20לעסק" class="btn btn-outline" style="width: 100%;">
                   התייעצות על חיבור מערכות
                 </a>
               </div>
@@ -1170,16 +2115,16 @@
       </div>
     </section>
 
-    <!-- Interactive ROI Estimator -->
+    <!-- Interactive ROI Estimator Panel -->
     <section id="roi">
       <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">// ROI CALCULATOR</div>
+        <div class="section-head reveal">
+          <div class="section-kicker">// ROI SIMULATION ENGINE</div>
           <h2 class="section-title">כמה זמן וכסף אוטומציה יכולה לחסוך בעסק שלך?</h2>
-          <p class="section-desc">הזן את היקף הפעולות הידניות החודשי וקבל הערכה מיידית של החיסכון השנתי.</p>
+          <p class="section-desc">הזן את היקף הפעולות הידניות החודשי וקבל חישוב מיידי של החיסכון השנתי המוערך.</p>
         </div>
 
-        <div class="roi-box">
+        <div class="roi-panel spotlight-card reveal">
           <div class="sliders">
             <div class="slider-row">
               <label for="docsPerMonth">
@@ -1204,123 +2149,182 @@
             </div>
           </div>
 
-          <div class="roi-results">
-            <div>
-              <div class="roi-metric-label">זמן עבודה שנחסך בשנה</div>
+          <div class="roi-metrics-grid">
+            <div class="roi-metric-item">
+              <div class="roi-metric-label">// זמן עבודה שנחסך בשנה</div>
               <div class="roi-metric-val" id="hoursSavedYear">216 שעות</div>
             </div>
-            <div>
-              <div class="roi-metric-label">חיסכון תפעולי משוער בשנה</div>
-              <div class="roi-metric-val green" id="moneySavedYear">₪14,040</div>
+            <div class="roi-metric-item">
+              <div class="roi-metric-label">// חיסכון תפעולי שנתי משוער</div>
+              <div class="roi-metric-val lime" id="moneySavedYear">₪14,040</div>
             </div>
-            <div style="font-size: 13px; color: var(--muted);">
-              * ההערכה מתייחסת לזמן הקלדה ומיון בלבד, לפני הפחתת טעויות אנוש וכפילויות.
+            <div style="font-size: 12px; color: var(--muted); font-family: var(--font-mono);">
+              * ההערכה מתייחסת לחיסכון בהקלדה ומיון בלבד, ללא שקלול מניעת שגיאות אנוש וכפילויות.
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Workflow / Methodology Section -->
     <section id="process">
       <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">// WORKFLOW</div>
-          <h2 class="section-title">תהליך הקמה ברור ומדויק</h2>
+        <div class="section-head reveal">
+          <div class="section-kicker">// METHODOLOGY & LIFECYCLE</div>
+          <h2 class="section-title">תהליך הקמה הנדסי וברור</h2>
+          <p class="section-desc">שלושה שלבים מדויקים שהופכים כאב תפעולי לתהליך אוטונומי ויציב.</p>
         </div>
 
         <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num">01 / אפיון</div>
-            <h4>מיפוי התהליך בעסק</h4>
-            <p>מבינים בדיוק אילו קבצים, מיילים ונתונים זורמים בעסק ואיפה נשרף הזמן הידני.</p>
+          <div class="step-card spotlight-card reveal">
+            <div class="step-num">// 01 MAPPING</div>
+            <h4>מיפוי וניתוח תהליך העבודה</h4>
+            <p>הבנה עמוקה של זרימת המידע בעסק, מקורות הקבצים, המיילים ואיפה נשרפות שעות עבודה יקרות.</p>
           </div>
-          <div class="step-card">
-            <div class="step-num">02 / פיתוח</div>
-            <h4>בנייה וחיבור למערכות</h4>
-            <p>מקימים זרימות עבודה נקיות המחברות בין הכלים הקיימים וסוכני AI ללא שינוי הרגלי העבודה של הצוות.</p>
+          <div class="step-card spotlight-card reveal">
+            <div class="step-num">// 02 DEPLOYMENT</div>
+            <h4>בנייה, פיתוח ואינטגרציה</h4>
+            <p>הקמת זרימות עבודה מלוטשות ב-n8n וחיבור סוכני AI למערכות הקיימות ללא שינוי הרגלי הצוות.</p>
           </div>
-          <div class="step-card">
-            <div class="step-num">03 / בקרה</div>
-            <h4>בדיקות קצה וניטור שוטף</h4>
-            <p>מוסיפים מנגנוני הגנה מכפילויות, דשבורדים למייל והתראות תקלה ברורות כדי שהמערכת תרוץ בראש שקט.</p>
+          <div class="step-card spotlight-card reveal">
+            <div class="step-num">// 03 MONITORING</div>
+            <h4>בדיקות קצה וניטור רציף</h4>
+            <p>הטמעת מנגנוני מניעת כפילויות, דשבורדים מעוצבים והתראות תקלה מיידיות לשקט נפשי מלא.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Contact High-Voltage Terminal Banner -->
     <section id="contact">
       <div class="container">
-        <div class="contact-panel">
-          <h2>רוצים לבדוק מה אפשר להפוך לאוטומטי בעסק שלכם?</h2>
+        <div class="contact-banner reveal">
+          <h2>רוצים לדעת מה אפשר להפוך לאוטומטי בעסק שלכם?</h2>
           <p>
-            שלחו מייל קצר עם תיאור התהליך שגוזל מכם היום הכי הרבה זמן, ונחזור אליכם עם כיוון פתרון ברור.
+            שלחו מייל קצר עם תיאור התהליך שגוזל מכם היום הכי הרבה זמן, ונחזור אליכם עם כיוון פתרון הנדסי מדויק.
           </p>
-          <div class="contact-actions">
-            <a href="mailto:segevshmuali@gmail.com?subject=פנייה%20מאתר%20SEAI%20-%20אפיון%20אוטומציה%20לעסק" class="btn btn-cyan">
+          <div class="actions" style="justify-content: center;">
+            <a href="mailto:segevshmuali@gmail.com?subject=פנייה%20מאתר%20SEAI%20-%20אפיון%20אוטומציה%20לעסק" class="btn btn-lime">
               שליחת מייל עכשיו
             </a>
-            <button type="button" class="btn btn-glass" id="copyEmailBtn" onclick="copyEmail()">
+            <button type="button" class="btn btn-outline" id="copyEmailBtn" onclick="copyEmail()">
               העתקת כתובת המייל
             </button>
           </div>
-          <div class="contact-email-display">segevshmuali@gmail.com</div>
+          <div class="contact-email-tag">segevshmuali@gmail.com</div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="container footer-inner">
       <div>© 2026 SEAI — אוטומציות עסקיות ובינה מלאכותית</div>
       <div>
-        <a href="https://github.com/segevshmuali-eng" target="_blank" rel="noopener noreferrer" style="color: var(--cyan-bright);">
-          פרופיל הפרויקטים בגיטהאב
+        <a href="mailto:segevshmuali@gmail.com" style="color: var(--lime); direction: ltr; display: inline-block;">
+          segevshmuali@gmail.com ↗
         </a>
       </div>
     </div>
   </footer>
 
-  <!-- Modal -->
+  <!-- Architecture Modal -->
   <div id="invoiceModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button type="button" class="modal-close" onclick="closeInvoiceModal()" aria-label="סגירה">✕</button>
       <h3 id="modalTitle">מפרט ארכיטקטורה — חילוץ, פענוח ותיוק חשבוניות</h3>
-      <p style="color: var(--muted); font-size: 15px; margin-top: 0;">
-        זרימת העבודה המלאה הפועלת בתזמון אוטומטי כל שעתיים:
+      <p style="color: var(--muted); font-size: 14px; margin-top: 0; font-family: var(--font-mono);">
+        // זרימת עבודה הפועלת בתזמון אוטומטי כל שעתיים:
       </p>
       <div class="modal-steps">
         <div class="modal-step">
-          <strong>01. איסוף דו-ערוצי (Gmail + Telegram DOSI)</strong>
-          שליפת מיילים שלא נקראו עם קובצי מסמכים או תמונות מוטמעות (תוך סינון אייקונים של חתימות), ובמקביל משיכת תמונות ומסמכים שנשלחו לבוט הטלגרם.
+          <strong>// 01 איסוף דו-ערוצי (Gmail + WhatsApp Bot)</strong>
+          שליפת מיילים שלא נקראו עם קבצי מסמכים או תמונות מוטמעות (תוך סינון חכם של אייקוני חתימות), ובמקביל משיכת תמונות ומסמכים שנשלחו לבוט הווטסאפ.
         </div>
         <div class="modal-step">
-          <strong>02. פענוח AI, תרגום והמרת מטבע בזמן אמת</strong>
-          סוכן הבינה המלאכותית מסווג אך ורק קבלות וחשבוניות מס (דוחה הצעות מחיר, זיכויים והזמנות), מתרגם לעברית וקורא לכלי חיצוני להמרת דולרים לשקלים חדשים בזמן אמת.
+          <strong>// 02 פענוח AI, תרגום והמרת מטבע בזמן אמת</strong>
+          סוכן הראייה הממוחשבת מסווג אך ורק קבלות וחשבוניות מס (דוחה הצעות מחיר וזיכויים), מתרגם לעברית ומבצע המרת מט"ח לשקלים בזמן אמת.
         </div>
         <div class="modal-step">
-          <strong>03. כתיבה היררכית וניקוי כפילויות ב-Airtable MCP</strong>
-          בדיקת כפילויות מוקדמת, רישום כל הפעולות המתומחרות כשורות פירוט, כתיבת שורת סיכום סה"כ עם הנושא הכללי, וסריקת ניקוי סופית ב-Airtable MCP.
+          <strong>// 03 כתיבה היררכית וניקוי כפילויות ב-Airtable MCP</strong>
+          בדיקת כפילויות מוקדמת, רישום כל הפעולות המתומחרות כשורות פירוט, כתיבת שורת סיכום סה"כ עם הנושא הכללי וסריקת ניקוי סופית.
         </div>
         <div class="modal-step">
-          <strong>04. קטלוג ותיוק אוטומטי ב-Google Drive</strong>
-          יצירה אוטומטית של עץ תיקיות לפי נושא, שנה וחודש, ושמירת הקובץ המקורי בשם הפריט המרכזי והיום בחודש.
+          <strong>// 04 קטלוג ותיוק אוטומטי ב-Google Drive</strong>
+          יצירה אוטומטית של עץ תיקיות מסודר לפי נושא, שנה וחודש, ושמירת הקובץ המקורי בשם הפריט המרכזי והיום בחודש.
         </div>
         <div class="modal-step">
-          <strong>05. דשבורד HTML מעוצב והתראת תקלה לטכנאי</strong>
-          הפקת דו"ח ביצועים מעוצב למייל הכולל פירוט מלא וסה"כ טבלה, ובנוסף מנגנון Error Trigger השולח מייל מפורט בעברית לטכנאי במקרה תקלה.
+          <strong>// 05 דשבורד ביצועים והתראת תקלה לטכנאי</strong>
+          הפקת דו"ח ביצועים מעוצב למייל הכולל פירוט מלא וטבלת סיכום, בתוספת מנגנון Error Trigger השולח מייל מפורט לטכנאי במקרה תקלה.
         </div>
       </div>
       <div class="actions">
-        <a href="https://github.com/segevshmuali-eng/invoice-extraction-automation" target="_blank" rel="noopener noreferrer" class="btn btn-cyan">
-          פתיחת המאגר בגיטהאב
+        <a href="mailto:segevshmuali@gmail.com?subject=התעניינות%20במערכת%20חילוץ%20חשבוניות" class="btn btn-lime">
+          התאמה והטמעה בעסק
         </a>
-        <button type="button" class="btn btn-glass" onclick="closeInvoiceModal()">סגירה</button>
+        <button type="button" class="btn btn-outline" onclick="closeInvoiceModal()">סגירה</button>
       </div>
     </div>
   </div>
 
   <script>
-    // ROI Calculator
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('he-IL', { hour12: false });
+      const clockEl = document.getElementById('clockDisplay');
+      if (clockEl) {
+        clockEl.textContent = timeStr;
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Mouse Spotlight Tracking across all cards
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Scroll Reveal Intersection Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Bento / Architectural Logo Grid Staggered Reveal (sequential left-to-right delay per cell)
+    const bentoGrid = document.querySelector('.bento-grid');
+    if (bentoGrid) {
+      const bentoCells = bentoGrid.querySelectorAll('.bento-cell');
+      bentoCells.forEach((cell, idx) => {
+        // Sequential left-to-right delay per cell (0.09s increment)
+        cell.style.setProperty('--stagger-delay', `${(idx * 0.09).toFixed(2)}s`);
+      });
+
+      const bentoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            bentoObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      bentoObserver.observe(bentoGrid);
+    }
+
+    // Interactive ROI Calculator
     function calcROI() {
       const docs = Number(document.getElementById('docsPerMonth').value);
       const mins = Number(document.getElementById('minsPerDoc').value);
@@ -1361,6 +2365,93 @@
       });
     }
 
+    // Lightweight Living Interactive Background Mesh Canvas
+    (function initLivingMesh() {
+      const canvas = document.getElementById('meshCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let particles = [];
+      const numParticles = 45;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < numParticles; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          radius: Math.random() * 1.6 + 0.8
+        });
+      }
+
+      let mouse = { x: null, y: null };
+      window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+
+          // Draw Particle Point
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(171, 255, 2, 0.45)';
+          ctx.fill();
+
+          // Connect Nearby Nodes
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 130) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(171, 255, 2, ${0.15 * (1 - dist / 130)})`;
+              ctx.lineWidth = 0.75;
+              ctx.stroke();
+            }
+          }
+
+          // Mouse Interaction
+          if (mouse.x !== null) {
+            const mdx = p.x - mouse.x;
+            const mdy = p.y - mouse.y;
+            const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mDist < 140) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(171, 255, 2, ${0.28 * (1 - mDist / 140)})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // Initialize calculator
     calcROI();
   </script>
 </body>
