@@ -531,18 +531,6 @@ function confirmAppointmentAndPay() {
     localStorage.setItem('app_appointments', JSON.stringify(appointments));
   }
 }
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...lastApp,
-        status: 'PAY',
-        confirmedAt: new Date().toISOString()
-      })
-    })
-    .then(res => console.log('Successfully posted payment confirmation to n8n:', res.status))
-    .catch(err => console.warn('Could not post confirmation to n8n:', err));
-  }
-}
 
 function setupEventListeners() {
   // אירועי טפסים
