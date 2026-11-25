@@ -1034,6 +1034,122 @@
       color: var(--ink-soft);
     }
 
+    /* קטלוג מוצרים וחבילות לעסק עם קישור ישיר לווטסאפ */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .catalog-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .catalog-card:hover {
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .catalog-card.featured {
+      border: 2px solid var(--orange-accent);
+    }
+
+    .catalog-media {
+      height: 360px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .catalog-media img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .catalog-body {
+      padding: 26px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      gap: 18px;
+    }
+
+    .catalog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .catalog-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--orange-accent);
+    }
+
+    .catalog-badge {
+      padding: 3px 10px;
+      background: var(--champagne);
+      border: 1px solid var(--border-light);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .catalog-card.featured .catalog-badge {
+      background: var(--orange-accent);
+      border-color: var(--orange-accent);
+      color: #ffffff;
+    }
+
+    .catalog-body h3 {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-size: 1.32rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .catalog-body p {
+      margin: 0;
+      font-size: 0.94rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .catalog-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .catalog-spec {
+      padding: 4px 10px;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-light);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
     /* פאנל ROI כהה */
     .roi-panel {
       background: var(--bg-dark);
@@ -1724,6 +1840,7 @@
     @media (max-width: 760px) {
       .nav-links { display: none; }
       .v-pillars-row,
+      .catalog-grid,
       .selected-grid,
       .mandelo-work-track,
       .ecosystem-grid,
@@ -1768,6 +1885,7 @@
       </a>
       <nav class="nav-links" aria-label="ניווט ראשי">
         <a href="#work">פרויקטים</a>
+        <a href="#catalog">קטלוג מוצרים</a>
         <a href="#ecosystem">פתרונות לעסק</a>
         <a href="#roi">חישוב חיסכון</a>
         <a href="#process">איך עובדים</a>
@@ -2136,6 +2254,125 @@
             <h3>לוחות בקרה מבוססי ענן</h3>
             <p>ממשקי שליטה אישיים שמחוברים דו-כיוונית לגוגל שיטס לצפייה, עריכה ומעקב תפעולי.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- קטלוג מוצרים וחבילות לעסק עם שליחת הודעה מוכנה ישירות לווטסאפ -->
+    <section class="light-section" id="catalog" style="background:var(--bg-paper);">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="mono" style="font-size:0.74rem;color:var(--ink-soft);">קטלוג פתרונות // מוצרים וחבילות לעסק</div>
+          <h2>בחרו את המוצר המתאים — <span class="serif-mix">ובלחיצה אחת נדבר בווטסאפ</span></h2>
+          <p style="margin:6px 0 0;color:var(--ink-soft);font-size:0.98rem;max-width:600px;">
+            כל מוצר נבנה בהתאמה מלאה לעסק שלך. לחיצה על לפרטים נוספים פותחת הודעה מוכנה ישירות מולי בווטסאפ.
+          </p>
+        </div>
+
+        <div class="catalog-grid reveal">
+          <article class="catalog-card featured">
+            <div class="catalog-media" style="background:#f4f3eb;">
+              <img src="assets/catalog/product-01-business-bundle.png" alt="חבילה עסקית הכוללת בניית אתר ומערכת ניהול תורים">
+            </div>
+            <div class="catalog-body">
+              <div>
+                <div class="catalog-head">
+                  <span class="catalog-tag">01 // חבילה מומלצת</span>
+                  <span class="catalog-badge">חבילה עסקית</span>
+                </div>
+                <h3>חבילה עסקית: בניית אתר + מערכת ניהול תורים</h3>
+                <p>
+                  הקמת אתר מותאם אישית לסגנון העסק שלך יחד עם מערכת קביעת תורים מלאה: יומן פנוי בזמן אמת, סליקה מראש, קבלות ותזכורות אוטומטיות ללקוחות.
+                </p>
+                <div class="catalog-specs">
+                  <span class="catalog-spec">אתר מותאם אישית</span>
+                  <span class="catalog-spec">ניהול תורים בזמן אמת</span>
+                  <span class="catalog-spec">סליקה וחשבוניות</span>
+                </div>
+              </div>
+              <a href="https://wa.me/972526115390" target="_blank" rel="noopener noreferrer" class="btn btn-lime catalog-wa-btn" data-wa-msg="היי שגב, אני מעוניין בפרטים נוספים על החבילה העסקית שכוללת בניית אתר ומערכת ניהול תורים." style="width:100%;">
+                לפרטים נוספים בווטסאפ
+              </a>
+            </div>
+          </article>
+
+          <article class="catalog-card">
+            <div class="catalog-media" style="background:#eae5d8;">
+              <img src="assets/catalog/product-02-leads.png" alt="מערכת ניהול לידים חכמה לעסק">
+            </div>
+            <div class="catalog-body">
+              <div>
+                <div class="catalog-head">
+                  <span class="catalog-tag">02 // מכירות ומעקב</span>
+                  <span class="catalog-badge">ניהול לידים</span>
+                </div>
+                <h3>מערכת ניהול לידים חכמה לעסק</h3>
+                <p>
+                  קליטה אוטומטית של כל פנייה מהאתר, מפייסבוק ומווטסאפ למסך מעקב אחד מסודר — עם מענה ראשוני מיידי ללקוח, תיוג חם/קר וסטטוס סגירות.
+                </p>
+                <div class="catalog-specs">
+                  <span class="catalog-spec">איסוף מכל ערוץ</span>
+                  <span class="catalog-spec">מענה מיידי 24/7</span>
+                  <span class="catalog-spec">מעקב הצעות ומכירות</span>
+                </div>
+              </div>
+              <a href="https://wa.me/972526115390" target="_blank" rel="noopener noreferrer" class="btn btn-dark catalog-wa-btn" data-wa-msg="היי שגב, אני מעוניין בפרטים נוספים על מערכת ניהול הלידים לעסק." style="width:100%;">
+                לפרטים נוספים בווטסאפ
+              </a>
+            </div>
+          </article>
+
+          <article class="catalog-card">
+            <div class="catalog-media" style="background:#faf9f5;">
+              <img src="assets/catalog/product-03-websites.png" alt="בניית אתרים מותאמים אישית לעסק">
+            </div>
+            <div class="catalog-body">
+              <div>
+                <div class="catalog-head">
+                  <span class="catalog-tag">03 // נוכחות ומיתוג</span>
+                  <span class="catalog-badge">אתרי תדמית ונחיתה</span>
+                </div>
+                <h3>בניית אתר מותאם אישית לעסק</h3>
+                <p>
+                  עיצוב ופיתוח של אתר תדמית או דף נחיתה ייחודי בסגנון ובשפה של העסק שלך — מהיר, חד בנייד ומוכן לקליטת לקוחות מפרסום ממומן.
+                </p>
+                <div class="catalog-specs">
+                  <span class="catalog-spec">עיצוב ייחודי לפי סגנון העסק</span>
+                  <span class="catalog-spec">טעינה מהירה ומותאמת לנייד</span>
+                  <span class="catalog-spec">חיבור לטפסים ולווטסאפ</span>
+                </div>
+              </div>
+              <a href="https://wa.me/972526115390" target="_blank" rel="noopener noreferrer" class="btn btn-dark catalog-wa-btn" data-wa-msg="היי שגב, אני מעוניין בפרטים נוספים על בניית אתר מותאם אישית לעסק שלי." style="width:100%;">
+                לפרטים נוספים בווטסאפ
+              </a>
+            </div>
+          </article>
+
+          <article class="catalog-card">
+            <div class="catalog-media" style="background:#141413;">
+              <img src="assets/catalog/product-04-systems-n8n.png" alt="בניית מערכות ואוטומציות עסקיות">
+            </div>
+            <div class="catalog-body">
+              <div>
+                <div class="catalog-head">
+                  <span class="catalog-tag">04 // תזמור ואוטומציה</span>
+                  <span class="catalog-badge">מערכות ואוטומציות</span>
+                </div>
+                <h3>בניית מערכות ואוטומציות לעסק</h3>
+                <p>
+                  חיבור חכם בין ווטסאפ, מייל, יומן, סליקה ומאגרי מידע בעזרת תהליכים אוטומטיים וסוכני AI — כדי לחסוך שעות עבודה ידניות בכל שבוע.
+                </p>
+                <div class="catalog-specs">
+                  <span class="catalog-spec">תהליכי n8n וחיבורי API</span>
+                  <span class="catalog-spec">סוכני בינה מלאכותית</span>
+                  <span class="catalog-spec">איסוף חשבוניות ודוחות לבד</span>
+                </div>
+              </div>
+              <a href="https://wa.me/972526115390" target="_blank" rel="noopener noreferrer" class="btn btn-dark catalog-wa-btn" data-wa-msg="היי שגב, אני מעוניין בפרטים נוספים על בניית מערכות ואוטומציות לעסק." style="width:100%;">
+                לפרטים נוספים בווטסאפ
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -2623,6 +2860,13 @@
         setTimeout(function () { btn.textContent = 'העתקת מייל'; }, 2200);
       });
     }
+
+    (function initCatalogWhatsAppLinks() {
+      document.querySelectorAll('.catalog-wa-btn[data-wa-msg]').forEach(function (link) {
+        var msg = link.getAttribute('data-wa-msg') || '';
+        link.href = 'https://wa.me/972526115390?text=' + encodeURIComponent(msg);
+      });
+    })();
 
     calcROI();
   </script>
